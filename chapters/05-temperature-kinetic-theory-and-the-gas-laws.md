@@ -1,285 +1,174 @@
-# Chapter 5 — Temperature, Kinetic Theory, and the Gas Laws
+# Chapter 13 — Temperature, Kinetic Theory, and the Gas Laws
 
-**Suggested titles**
-
-1. Temperature, Kinetic Theory, and the Gas Laws
-2. Why Hot Means "Atoms Moving Fast"
-3. The Ideal Gas Law and What Lives Underneath It
-
-**TL;DR.** Temperature, at the macroscopic scale, is what a thermometer measures. At the microscopic scale, it's the average kinetic energy of randomly-moving molecules. **Kinetic theory** connects the two: $\tfrac{1}{2} m \overline{v^2} = \tfrac{3}{2} k_B T$, where $T$ is in kelvin and $k_B$ is Boltzmann's constant. From kinetic theory, the **ideal gas law** $PV = nRT$ falls out — pressure, volume, and temperature of a gas are linked because pressure is the time-averaged momentum transfer of trillions of molecules to the container walls. This chapter installs temperature scales, thermal expansion, the gas law, and the kinetic-theory bridge between the macroscopic and microscopic worlds.
+*What a thermometer measures, and what lives underneath it.*
 
 ---
 
-## A railroad track buckling on a hot day, summer 2002
+## A railroad track buckles in Maryland
 
-July 2002, Maryland, USA. A CSX freight train is rolling along a stretch of straight track. The day is unusually hot — air temperature in the upper 90s Fahrenheit, the steel rails baking under direct sun. As the train passes over a particular section, the lead engineer suddenly feels the locomotive lurch. Behind him, a few cars come off the rails. The track had buckled — sun-kinked, in railroad terminology — bending sideways out of its straight alignment because the steel had expanded in the heat and had nowhere to go.
+July 2002, Maryland. A CSX freight train is moving along a stretch of continuously welded rail. The day is brutally hot — air temperature in the upper nineties, the steel baking in direct sun. The lead engineer feels the locomotive lurch. Behind him, several cars leave the rails. The track has buckled sideways: sun-kinked, in railroad terminology, bent into an S-curve several meters wide.
 
-The numbers are unforgiving. Steel has a thermal expansion coefficient of about $1.2 \times 10^{-5}$ per degree Celsius. A $1{,}000 \text{ m}$ stretch of continuously welded track, going from a winter low of $-20°\text{C}$ to a summer high of $+50°\text{C}$, expands by:
+The physics is unforgiving. Steel has a thermal expansion coefficient of about $1.2 \times 10^{-5}$ per degree Celsius. A stretch of rail one kilometer long, going from $-20°$C in winter to $+50°$C in summer, expands by:
 
 $$\Delta L = \alpha L_0 \Delta T = (1.2 \times 10^{-5})(1000)(70) = 0.84 \text{ m}.$$
 
-Almost a meter of expansion across one kilometer. If the rail is constrained at both ends (welded, ballasted, spiked) and can't grow longitudinally, that expansion has to go *somewhere*. It goes sideways. The rail buckles into a snake-like S-curve, several meters of lateral displacement — and a train passing over it derails.
+Almost a meter. If both ends are fixed — welded, ballasted, spiked — that expansion can't go longitudinally, so it goes sideways. The rail becomes a snake, and anything running over it derails.
 
-Modern continuous welded rail is engineered with this in mind: the rail is laid at a "neutral temperature" where it's neither under tension (winter) nor compression (summer); ballast is packed tightly to prevent lateral movement; and tracks in hot climates use stress-monitoring sensors. But the underlying physics is that solid materials expand when heated, and the expansion is a relentless function of temperature and material properties. You can engineer around it, but you can't make it go away.
+This is the chapter about temperature. Not temperature as a thing you read off a gauge, but temperature as something physical — something happening to the atoms. The railroad track tells you that temperature changes make materials expand, and that even a tiny coefficient of expansion, multiplied over enough material, produces forces large enough to destroy infrastructure. But that's the easy story. The harder, more interesting story is what temperature actually *is* at the level of the atoms. And the answer to that question, once you see it, changes how you think about heat, about gases, about pressure — about almost everything in thermodynamics.
 
-This chapter is about temperature: what it measures, how it relates to the kinetic energy of atoms, how it expands solids and changes the pressure-volume properties of gases. By the end you'll be able to compute thermal expansion, apply the ideal gas law, and understand why "hot" is a statement about the average kinetic energy of microscopic motion.
-
-**Learning objectives.** By the end of this chapter you should be able to:
-
-1. Convert temperatures between Celsius, Fahrenheit, and Kelvin scales; explain why Kelvin is "absolute."
-2. Compute thermal expansion of solids using $\Delta L = \alpha L_0 \Delta T$ and volume expansion using $\Delta V = \beta V_0 \Delta T$.
-3. Apply the ideal gas law $PV = nRT$ (or $PV = N k_B T$) to compute changes in any one variable when the others change.
-4. Apply kinetic theory: $\tfrac{1}{2} m \overline{v^2} = \tfrac{3}{2} k_B T$ to connect temperature to molecular kinetic energy.
-5. Interpret phase diagrams qualitatively and identify triple points and critical points.
-
-**Prerequisites.** Chapter 7 (kinetic energy). Chapter 11 (pressure, density). Chapter 12 (fluids in motion — gases as fluids).
-
-**Why this chapter matters.** Temperature is the bridge from mechanics to thermodynamics. The gas laws underlie meteorology, refrigeration, internal combustion engines, scuba diving, and almost every chemical process. Kinetic theory is one of physics's deepest unifications: it shows that the macroscopic concept of "temperature" is microscopically just average kinetic energy. The chapter sets up everything that comes next: heat (Ch. 14), thermodynamic laws (Ch. 15), thermal radiation, entropy, and statistical mechanics.
+<!-- → [FIGURE: Photo or schematic of sun-kinked rail — overhead view showing an S-curve buckle in otherwise straight track. Caption: "Sun-kink on continuously welded rail. The track expanded; both ends were fixed; the expansion went sideways. The numbers in the text predict this."] -->
 
 ---
 
-## Concept 1 — Temperature, scales, and thermal expansion
+## Temperature scales and what the zeroth law is saying
 
-### A platinum-iridium bar in a vault, then an alcohol thermometer
+Operationally, two objects are at the same temperature if, when you bring them into thermal contact, no heat flows from one to the other. That's the zeroth law of thermodynamics: it's the statement that temperature is a real quantity, that it's the same in both objects when they've equilibrated, and that it's the thing that determines which way heat will flow when two objects touch. Heat flows from high temperature to low. Temperature is what tells you the direction.
 
-Until 2019, the kilogram was defined by a piece of metal in a vault near Paris (Chapter 1). Until 1967, the second was defined by the rotation of the Earth. Temperature has had a similar history of moving from artifact-based definitions to fundamental-constant definitions. In 2019, the kelvin was redefined in terms of the Boltzmann constant $k_B = 1.380649 \times 10^{-23} \text{ J/K}$.
+Three scales have been invented to measure it.
 
-But what *is* temperature, operationally? Two systems are at the same temperature if, when brought into thermal contact, no net heat flows between them. This is the **zeroth law of thermodynamics** — sometimes called the law that gives temperature its meaning. Temperature is what tells you which way heat will flow when two systems touch.
+Celsius (°C) anchors to water: freezing at 0°, boiling at 100° at one atmosphere. Most of the world uses it for everyday life. Fahrenheit (°F) anchors to a different set of reference points and compresses the degree size; water freezes at 32°, boils at 212°. The United States uses it for weather. Neither of these is the right scale for physics.
 
-Three temperature scales:
+The right scale is Kelvin. It starts at *absolute zero* — the temperature at which molecular thermal motion would be as small as it can be — and uses the same size degree as Celsius. The conversion is simply $T_K = T_C + 273.15$. Why Kelvin is the right scale isn't a convention; it's physics. The gas laws, the kinetic theory, the blackbody radiation law, the entropy formula — all of them involve temperature multiplicatively, as $T$ in the denominator of an exponent or the numerator of a product. With Celsius, you'd be multiplying by an arbitrarily shifted number and getting nonsense. With Kelvin, $T = 0$ is the physically meaningful zero: the absence of thermal energy.
 
-- **Celsius** (°C): water freezes at 0°, boils at 100° (at 1 atm). Used in most of the world for everyday temperature.
-- **Fahrenheit** (°F): water freezes at 32°, boils at 212°. Used in the U.S.
-- **Kelvin** (K): zero is *absolute zero* — the temperature at which molecular motion would cease (theoretically; quantum mechanics keeps a residual zero-point motion). Same size of degree as Celsius, just shifted: $T_K = T_C + 273.15$.
+In 2019, the kelvin was formally redefined: instead of being tied to the triple point of water (the unique temperature at which ice, liquid water, and water vapor coexist — 273.16 K exactly), it was tied to the Boltzmann constant $k_B = 1.380649 \times 10^{-23}$ J/K, fixed by definition. This is the same 2019 redefinition that tied the kilogram to Planck's constant and the ampere to the electron charge. The idea is always the same: anchor a unit to a fundamental constant of nature, not to a lump of matter or a property of one particular substance. Temperature is now defined in terms of energy per molecule per unit of $T$ — which is, as we'll see, exactly what temperature *is*.
 
-Conversion: $T_C = (T_F - 32) \times 5/9$. $T_K = T_C + 273.15$.
+<!-- → [TABLE: Three temperature scales side by side — columns: scale, absolute zero, water freezes, water boils, typical room temperature, conversion formula. Rows: Celsius, Fahrenheit, Kelvin. Student should see at a glance why Kelvin is the natural choice: it's the only one with a physically meaningful zero.] -->
 
-Why kelvin is the right scale for physics: many laws (gas law, kinetic theory, blackbody radiation) involve temperature in a multiplicative way. With Celsius or Fahrenheit, you'd be multiplying by an arbitrarily-shifted number. With kelvin, $T = 0$ corresponds to the absence of thermal motion — a physically meaningful zero.
+---
 
-### Thermal expansion: solids, liquids, gases
+## Thermal expansion: the mechanism
 
-When most materials are heated, they expand. For solids, the linear expansion is approximately:
+When you heat a solid, it expands. The formula is:
 
 $$\Delta L = \alpha L_0 \Delta T,$$
 
-where $\alpha$ is the **coefficient of linear expansion** (units: $1/K$ or $1/°C$ — same since the size of the kelvin and celsius degree are the same). Some typical values:
+where $\alpha$ is the coefficient of linear expansion — a small number, typically $10^{-6}$ to $10^{-5}$ per kelvin depending on the material. Aluminum: $25 \times 10^{-6}/K$. Steel: $12 \times 10^{-6}/K$. Pyrex glass: $3 \times 10^{-6}/K$, which is why Pyrex is used for cookware — it barely changes shape when you move it from a cold oven to a hot flame.
 
-- Aluminum: $\alpha = 25 \times 10^{-6} / K$.
-- Steel: $\alpha = 12 \times 10^{-6} / K$.
-- Glass (Pyrex): $\alpha = 3 \times 10^{-6} / K$.
-- Water (volumetric, $\beta$): $\beta = 210 \times 10^{-6} / K$ (much larger than solid linear expansion).
+Why do solids expand at all? At the atomic level, atoms in a solid sit in potential wells — each atom is held near an equilibrium position by the forces from its neighbors. The well is shaped roughly like a parabola: symmetric about the minimum, rising steeply on both sides. But only roughly. The actual well is *asymmetric*: it rises more steeply when atoms are pushed together (compression) than when they're pulled apart (extension). When you heat the solid, the atoms vibrate more vigorously — greater amplitude. And because of the asymmetry, the average position shifts slightly outward. More vibration means more displacement from center, and the asymmetric well means the average is not at the center. Macroscopically: the material expands.
 
-For volume expansion of a solid, $\beta \approx 3\alpha$. For liquids, $\beta$ is the relevant quantity directly.
+<!-- → [FIGURE: Diagram of an asymmetric atomic potential well — a U-shaped curve, steeper on the left (compression) than on the right (extension). Two horizontal lines showing total energy at low T and high T. Vertical dashed lines at the classical turning points for each energy level. The midpoint of the turning points (average position) shifts right as energy increases. Caption: "The asymmetry of the potential well is the entire reason solids expand. A symmetric well would show no net shift in average position, and no expansion."] -->
 
-Water has a famous anomaly: between $0°\text{C}$ and $4°\text{C}$, water *contracts* on heating (becomes denser as it warms). This is why ice floats — solid ice is less dense than liquid water at $4°\text{C}$. It's also why ponds and lakes freeze top-down rather than bottom-up: the densest water (at $4°\text{C}$) sinks to the bottom, leaving cooler water above to freeze first.
+The asymmetry is mild, which is why $\alpha$ is small. But integrate that small coefficient over a kilometer of railroad track and you get almost a meter of expansion. The engineering response is to lay continuously welded rail at a neutral temperature — neither under tension nor compression at the temperature when it was installed — and to pack ballast tightly so lateral motion is resisted. You can manage the physics. You cannot eliminate it.
 
-### The mechanism — why materials expand
-
-At the atomic level, atoms in a solid vibrate around equilibrium positions in a roughly parabolic potential well. When you heat the material, the atoms vibrate with greater amplitude. Because the potential well is slightly *asymmetric* (rising more steeply for compression than for expansion), the average position shifts outward. The macroscopic effect is expansion.
-
-This is also why thermal expansion coefficients are typically small ($10^{-6}$ to $10^{-5}$ per kelvin): the asymmetry is mild, so the expansion per degree is small. But over large temperature ranges and long structures (Maryland railroad track), the small per-degree expansion adds up to meters.
-
-### The trade-off
-
-The linear-expansion formula trades **detailed atomic-scale potential** for **a single empirical coefficient $\alpha$.** It works well for moderate temperature ranges and most engineering materials. At very high or very low temperatures, $\alpha$ itself becomes temperature-dependent, and the linear formula needs corrections.
-
-### Worked example — thermal stress in railroad track
-
-A $200 \text{ m}$ section of welded steel rail is laid at $20°\text{C}$ (assumed neutral temperature). On a summer day, the rail temperature reaches $50°\text{C}$. (a) How much would it expand if free to expand? (b) If constrained (no expansion allowed), what compressive stress builds up in the rail? (Steel Young's modulus $Y = 200 \times 10^9 \text{ Pa}$.)
-
-**(a) Free expansion.** $\Delta L = \alpha L_0 \Delta T = (12 \times 10^{-6})(200)(30) = 0.072 \text{ m} = 7.2 \text{ cm}$.
-
-**(b) Stress if constrained.** Strain that would occur if free: $\epsilon = \Delta L / L_0 = 0.072 / 200 = 3.6 \times 10^{-4}$. Stress: $\sigma = Y \epsilon = (200 \times 10^9)(3.6 \times 10^{-4}) = 7.2 \times 10^7 \text{ Pa} = 72 \text{ MPa}$.
-
-About $72 \text{ MPa}$ of compressive stress builds up. This is below structural steel's yield stress (~$250 \text{ MPa}$), so the rail won't yield, but it's enough to push the rail laterally if there's any side play — which is what causes sun-kinks.
-
-**Sanity check.** Real railroad-rail thermal stresses can reach $\sim 100 \text{ MPa}$ or more in extreme heat, exactly the regime where lateral buckling becomes the failure mode. The numbers match published engineering experience.
-
-### Common misconceptions
-
-- *"Cold is the absence of heat; heat is a substance."* Heat (Chapter 14) is energy in transit due to a temperature difference. There's no "cold" substance. Cold is just less heat.
-- *"All materials expand on heating."* Most do. Water between 0° and 4°C is the famous exception. Some specially-engineered materials (Invar) have nearly zero thermal expansion.
-
-↳ **Dig Deeper — Why is the kelvin defined by Boltzmann's constant?**
-
-*Until 2019, the kelvin was defined as a fraction (1/273.16) of the temperature at which water has a triple point — the unique temperature at which solid, liquid, and gas all coexist. In 2019, the kelvin was redefined in terms of $k_B = 1.380649 \times 10^{-23} \text{ J/K}$ exactly. The redefinition tied temperature to a fundamental constant rather than a property of water.*
-
-**Prompt:**
-> Explain the 2019 redefinition of the kelvin in terms of the Boltzmann constant. Walk through (a) the previous definition based on the triple point of water (273.16 K), (b) why an artifact-free definition using a fundamental constant is preferred, (c) the Boltzmann constant itself and its physical role (it converts temperature to energy, $k_B T$ being the characteristic thermal energy scale at temperature $T$). End with one sentence on what other SI units were redefined in the same 2019 reform (the kilogram, ampere, and mole — all tied to fundamental constants).
-
-**What to do with the output:** Save it. The 2019 SI redefinition is one of the most consequential developments in modern metrology and continues the trend started in Chapter 1.
+Water is the famous exception to the "solids expand, liquids expand" story. Between 0°C and 4°C, water *contracts* on heating — it becomes *denser* as it warms from the freezing point to 4°C, then expands beyond that. This is why ice floats: solid ice is less dense than liquid water at 4°C. And it's why lakes and ponds freeze from the top down rather than the bottom up. As the surface water cools below 4°C, it becomes less dense and stays at the top. The denser 4°C water sinks to the bottom. The surface freezes while the bottom stays liquid — and aquatic life survives winter underneath the ice. The anomaly is real and consequential.
 
 ---
 
-## Concept 2 — The ideal gas law: $PV = nRT$
+## The ideal gas law
 
-### A fixed-mass balloon in a freezer
+Take a balloon, inflate it at room temperature, tie it off. Put it in the freezer. An hour later, take it out. The balloon is smaller — visibly so. The amount of gas inside hasn't changed; the rubber kept it sealed. What happened?
 
-Take a balloon, blow it up at room temperature, tie it off. Place it in a freezer for an hour. Take it out. The balloon has shrunk — visibly, sometimes dramatically. The amount of gas inside hasn't changed (the balloon is sealed). What happened?
-
-Pressure inside the balloon adjusts to roughly equal the outside atmospheric pressure (the rubber's tension adds a small extra). With fixed pressure, fixed amount of gas, and reduced temperature, the volume must shrink. This is the **ideal gas law** in action.
-
-The law combines several earlier empirical laws:
-
-- **Boyle's law:** at constant $T$ and $n$, $PV = $ constant.
-- **Charles's law:** at constant $P$ and $n$, $V/T = $ constant.
-- **Avogadro's law:** at constant $P$ and $T$, $V/n = $ constant.
-
-All three combine into:
+The gas contracted because the temperature dropped. At roughly constant pressure (the rubber provides only a small extra contribution to the pressure balance), a drop in temperature means a proportional drop in volume. This is just one version of the ideal gas law:
 
 $$PV = nRT,$$
 
-where $P$ is pressure (Pa), $V$ is volume (m³), $n$ is moles of gas, $R = 8.314 \text{ J/(mol·K)}$ is the universal gas constant, and $T$ is temperature in kelvin.
+where $P$ is absolute pressure in pascals, $V$ is volume in cubic meters, $n$ is the number of moles, $R = 8.314$ J/(mol·K) is the universal gas constant, and $T$ is temperature in kelvin — not Celsius, not Fahrenheit.
 
-Equivalently, using number of molecules $N$ instead of moles:
+Equivalently, using the number of molecules $N$ rather than moles:
 
-$$PV = N k_B T,$$
+$$PV = Nk_BT,$$
 
-where $k_B = R/N_A = 1.381 \times 10^{-23} \text{ J/K}$ is Boltzmann's constant and $N_A = 6.022 \times 10^{23}$ is Avogadro's number.
+with $k_B = R/N_A = 1.381 \times 10^{-23}$ J/K, Boltzmann's constant. These are the same equation. The choice between them is whether you're counting molecules ($N$) or counting moles ($n$); the physics is identical.
 
-### The mechanism — what the law says and where it's exact
+The law combines three earlier empirical observations. Boyle found, around 1660, that at fixed temperature and amount, $P$ and $V$ are inversely proportional: $PV = \text{const}$. Charles found, around 1787, that at fixed pressure and amount, volume is proportional to temperature: $V \propto T$. Avogadro found that at fixed pressure and temperature, volume is proportional to the number of molecules. Combine all three and you get $PV = nRT$.
 
-The ideal gas law treats a gas as a collection of point particles that don't interact except through brief elastic collisions. It's exact in the limit of high temperature and low density (where molecules are far apart, and intermolecular forces can be neglected). Real gases deviate at high pressure and low temperature, where intermolecular forces and finite molecular volumes matter — corrections are handled by the Van der Waals equation and more sophisticated equations of state.
+A useful reference point: at standard temperature and pressure (0°C = 273.15 K, 1 atm = 101,325 Pa), one mole of any ideal gas occupies:
 
-For most engineering and atmospheric-science applications, the ideal gas law is excellent. Nitrogen, oxygen, hydrogen, helium, and most other common gases at room temperature and pressures from vacuum to a few atmospheres are well-approximated as ideal.
+$$V = \frac{nRT}{P} = \frac{(1)(8.314)(273.15)}{101{,}325} \approx 22.4 \text{ L}.$$
 
-A useful rearrangement: at standard conditions ($T = 273.15 \text{ K}$, $P = 1 \text{ atm} = 101{,}325 \text{ Pa}$), one mole of ideal gas occupies:
+Twenty-two and a half liters per mole at standard conditions. This number is worth remembering; it's the most-used result in introductory chemistry, and it falls directly out of the gas law.
 
-$$V_{\text{molar}} = \frac{nRT}{P} = \frac{(1)(8.314)(273.15)}{101{,}325} \approx 0.0224 \text{ m}^3 = 22.4 \text{ L}.$$
+The law works well for gases at moderate pressures and temperatures — nitrogen, oxygen, helium, hydrogen, air, most common gases at conditions between a rough vacuum and several atmospheres. It breaks down when molecules are close together (high pressure) or when attractive forces between molecules matter (low temperature). The van der Waals equation adds two correction terms — one for intermolecular attraction, one for the finite volume of the molecules themselves — and handles those regimes. But for almost everything introductory physics needs, the ideal version is the right tool.
 
-This $22.4 \text{ L/mol}$ at STP is the most-quoted result in introductory chemistry.
-
-### The trade-off
-
-The ideal gas law trades **microscopic accuracy at extreme conditions** for **a single equation that captures gas behavior to within a few percent across most everyday situations.** Real gases need corrections at high pressure or low temperature; the ideal version is the entry point and works for almost all introductory physics situations.
-
-### Worked example — pressure in a tire as it warms
-
-A car tire is filled to gauge pressure $230 \text{ kPa}$ (about $33 \text{ psi}$, roughly atmospheric + tire) at $15°\text{C}$. After driving, the tire warms to $40°\text{C}$. The volume of the tire changes negligibly. What is the new gauge pressure?
-
-**Setup.** Absolute initial pressure: $P_1 = 230 + 101 = 331 \text{ kPa}$. Initial temperature: $T_1 = 15 + 273 = 288 \text{ K}$. Final temperature: $T_2 = 40 + 273 = 313 \text{ K}$.
-
-**Apply ideal gas law at constant volume and amount.** $P_1/T_1 = P_2/T_2 \implies P_2 = P_1 \times T_2/T_1$:
-
-$$P_2 = 331 \times \frac{313}{288} \approx 360 \text{ kPa}.$$
-
-New gauge pressure: $P_{2,\text{gauge}} = 360 - 101 = 259 \text{ kPa}$ (about $37 \text{ psi}$).
-
-**Sanity check.** Tire pressure rises by ~$10\%$ when the tire heats from cold to driven-warm — consistent with everyday experience and with manufacturer recommendations (always check tire pressure cold). The increase isn't enough to blow a tire, but it does affect handling.
-
-### Common misconceptions
-
-- *"Gas law works in Celsius."* No — must use kelvin. The law $PV = nRT$ assumes absolute temperature; using Celsius in $T_2/T_1$ gives wildly wrong answers, especially at low temperatures.
-- *"Pressure is the same as gauge pressure."* In the ideal gas law, $P$ is *absolute* pressure. Subtract atmospheric to get gauge if that's what you're given.
-
-↳ **Dig Deeper — Why does breathing work? (Boyle's law in the lungs)**
-
-*Inhalation: your diaphragm contracts, expanding the chest cavity. By Boyle's law (at constant amount and temperature, $P V = $ const), expanding the volume reduces the pressure inside the lungs below atmospheric — and air rushes in to equalize. Exhalation reverses: chest cavity contracts, lung pressure rises above atmospheric, air is pushed out. The whole system runs on Boyle's law.*
-
-**Prompt:**
-> Apply Boyle's law to the mechanics of human breathing. (a) Estimate the lung volume change during a typical breath (~0.5 L tidal volume on an ~5 L total lung capacity). (b) Compute the pressure change inside the lungs during inhalation, assuming temperature stays constant and no air enters yet (this is the driving pressure differential). (c) Discuss how this pressure differential drives airflow into the lungs, with the air entering until pressures equalize. End with one sentence on how this physiological process is one of the most direct everyday demonstrations of the gas laws.
-
-**What to do with the output:** Save it. Breathing as gas-law application is a beautiful pedagogical bridge between physics and physiology.
+One thing constantly catches students: the $T$ in $PV = nRT$ is in kelvin. Always. The law says volume is proportional to absolute temperature. At absolute zero, volume would be zero (the gas would have no thermal motion to push on the walls). If you use Celsius, you're computing ratios like $T_2/T_1$ as $(25°\text{C})/(0°\text{C}) = 25/0$ — which is infinite — instead of $(298\text{ K})/(273\text{ K}) \approx 1.09$. Use Celsius in a gas-law calculation and you will get a wildly wrong answer.
 
 ---
 
-## Concept 3 — Kinetic theory: temperature as molecular kinetic energy
+## Kinetic theory: temperature is molecular kinetic energy
 
-### A puff of perfume diffusing across a room
+Here is the deep idea, and it is worth sitting with.
 
-Spray a small amount of perfume in one corner of a still room. Within minutes, the smell has spread across the room. There's no air current; the molecules diffused — moved on their own — from high concentration to low concentration. The molecules are in constant, random thermal motion, and that motion is what diffuses them.
+A sealed container holds a gas. The gas has a temperature $T$, a pressure $P$, a volume $V$, and the molecules inside are moving — constantly, chaotically, in all directions. The pressure on the walls isn't a smear; it's the sum of billions of tiny momentum kicks as molecules bounce off the walls. The temperature isn't a reading on a gauge; it's the average kinetic energy of those molecules.
 
-How fast are they moving? It depends on temperature. The kinetic theory of gases gives an exact relationship.
+Precisely:
 
-### The mechanism — kinetic theory
+$$\frac{1}{2}m\overline{v^2} = \frac{3}{2}k_BT.$$
 
-For an ideal gas at temperature $T$ (kelvin), the average kinetic energy of a molecule is:
+The average kinetic energy of a molecule — $\tfrac{1}{2}m\overline{v^2}$, where $m$ is the mass of one molecule and $\overline{v^2}$ is the mean square speed — equals $\tfrac{3}{2}k_BT$. The factor of 3 comes from three independent directions of motion: $x$, $y$, and $z$. Each direction contributes $\tfrac{1}{2}k_BT$ to the average energy. This is the equipartition theorem: each degree of freedom gets $\tfrac{1}{2}k_BT$.
 
-$$\bar{KE} = \tfrac{1}{2} m \bar{v^2} = \tfrac{3}{2} k_B T.$$
+Temperature, at bottom, is just a measure of how fast molecules are moving on average.
 
-The factor of $3$ accounts for three degrees of freedom (motion in $x$, $y$, $z$). Each degree of freedom contributes $\tfrac{1}{2} k_B T$ — this is the **equipartition theorem**.
+From this you can compute the root-mean-square speed — the square root of the mean squared velocity, a useful measure of the typical molecular speed:
 
-Solving for the **root-mean-square speed**:
+$$v_{\text{rms}} = \sqrt{\overline{v^2}} = \sqrt{\frac{3k_BT}{m}}.$$
 
-$$v_{\text{rms}} = \sqrt{\overline{v^2}} = \sqrt{\frac{3 k_B T}{m}}.$$
+For nitrogen at room temperature ($T = 293$ K, $m = 28 \times 1.66 \times 10^{-27}$ kg $= 4.65 \times 10^{-26}$ kg):
 
-For nitrogen molecules at room temperature ($T = 293 \text{ K}$, $m = 28 \times 1.66 \times 10^{-27} \text{ kg} = 4.65 \times 10^{-26} \text{ kg}$):
+$$v_{\text{rms}} = \sqrt{\frac{3(1.38 \times 10^{-23})(293)}{4.65 \times 10^{-26}}} \approx 510 \text{ m/s}.$$
 
-$$v_{\text{rms}} = \sqrt{\frac{3(1.38 \times 10^{-23})(293)}{4.65 \times 10^{-26}}} = \sqrt{\frac{1.21 \times 10^{-20}}{4.65 \times 10^{-26}}} = \sqrt{2.6 \times 10^5} \approx 510 \text{ m/s}.$$
+Five hundred and ten meters per second. Faster than the speed of sound in air (about 343 m/s). The air molecules around you right now, at room temperature, are moving faster than a supersonic aircraft — individually, randomly, in every direction.
 
-That's *faster than the speed of sound*. Air molecules are zipping around at hundreds of meters per second, even at room temperature. The reason perfume doesn't fill the room instantly: the molecules undergo countless collisions with each other (mean free path of $\sim 70 \text{ nm}$ at standard conditions). So even though they're moving at $510 \text{ m/s}$, they're random-walking — net diffusion across a meter takes minutes.
+Why doesn't perfume fill a room instantly, then? Because the molecules don't travel in straight lines. They collide with each other constantly. The mean free path — the average distance a nitrogen molecule travels between collisions at standard conditions — is about 70 nanometers. At 510 m/s and 70 nm mean free path, a molecule undergoes roughly $7 \times 10^9$ collisions per second. It's moving at supersonic speed but zigzagging through a traffic jam. Net diffusion across a meter takes minutes, not milliseconds.
 
-### Pressure from kinetic theory
+<!-- → [FIGURE: Illustration contrasting two scales — left panel: single molecule path at 510 m/s with straight-line arrow (labeled "if no collisions: room in ~2 ms"); right panel: same molecule shown as a random walk zigzagging through many collisions over the same time interval, covering a fraction of a meter. Caption: "Speed vs. diffusion. The molecules are fast; the traffic jam is real."] -->
 
-The ideal gas law follows from kinetic theory. Imagine a cubic box of side $L$ containing $N$ molecules, each of mass $m$. Each molecule colliding with a wall transfers momentum. Computing the time-averaged force per unit area (the pressure) and using equipartition gives:
+The $v_{\text{rms}}$ formula tells you something important about which molecules stay and which escape. At a given temperature $T$, every molecule has the same average kinetic energy $\tfrac{3}{2}k_BT$. Since $\text{KE} = \tfrac{1}{2}mv^2$, lighter molecules must move faster to have the same energy. Hydrogen at 300 K:
 
-$$PV = \tfrac{2}{3} N \cdot \tfrac{1}{2} m \overline{v^2} = \tfrac{2}{3} N \cdot \tfrac{3}{2} k_B T = N k_B T.$$
+$$v_{\text{rms}} = \sqrt{\frac{3k_BT}{m_{\text{H}_2}}} \approx 1{,}930 \text{ m/s}.$$
 
-Which is the ideal gas law. The macroscopic concept of "pressure" emerges from the microscopic concept of "lots of molecular collisions." Temperature emerges from "average kinetic energy of those molecules."
+That's already about 17% of Earth's escape velocity (11,200 m/s). But the Maxwell-Boltzmann distribution — the full probability distribution of molecular speeds — has a long tail to high speeds. A significant fraction of hydrogen molecules, at any time, are moving well above the rms speed. Over geological time, that high-speed tail has literally leaked hydrogen off Earth. The atmosphere you're breathing has lost most of its original hydrogen; what's here now is bound up in water and organic compounds. Nitrogen and oxygen, being fourteen to sixteen times heavier, have rms speeds much lower than escape velocity, so they stay. The Moon, with escape velocity of only 2,380 m/s, has lost nearly everything — its lack of atmosphere is a direct consequence of the $v_{\text{rms}} \propto 1/\sqrt{m}$ scaling.
 
-### The trade-off
-
-Kinetic theory trades **conceptual simplicity (a gas as billiard balls bouncing around)** for **statistical analysis (averages over Avogadro-scale numbers of molecules)**. The cost: you can't track individual molecules. The benefit: you derive the macroscopic gas law from microscopic mechanics, unifying statistical mechanics with classical mechanics. This is one of the deepest results in physics.
-
-### Worked example — speeds of common gas molecules
-
-At room temperature ($T = 300 \text{ K}$), compute $v_{\text{rms}}$ for: (a) hydrogen ($m = 2 \times 1.66 \times 10^{-27} \text{ kg}$), (b) nitrogen ($28 \times 1.66 \times 10^{-27}$), (c) carbon dioxide ($44 \times 1.66 \times 10^{-27}$).
-
-**(a) Hydrogen.** $v = \sqrt{3(1.38 \times 10^{-23})(300)/(3.32 \times 10^{-27})} = \sqrt{3.74 \times 10^6} \approx 1{,}930 \text{ m/s}$.
-
-**(b) Nitrogen.** $v = \sqrt{3(1.38 \times 10^{-23})(300)/(4.65 \times 10^{-26})} = \sqrt{2.67 \times 10^5} \approx 517 \text{ m/s}$.
-
-**(c) CO₂.** $v = \sqrt{3(1.38 \times 10^{-23})(300)/(7.31 \times 10^{-26})} = \sqrt{1.70 \times 10^5} \approx 412 \text{ m/s}$.
-
-**Sanity check.** At the same temperature, lighter molecules move faster (so all particles have the same average KE). Hydrogen (lightest) moves nearly $4\times$ faster than CO₂ (heavier). This is why hydrogen escapes from Earth's atmosphere over geological time: $v_{\text{rms}} = 1{,}900 \text{ m/s}$ is a substantial fraction of escape velocity ($11{,}200 \text{ m/s}$), and the high-velocity tail of the Maxwell-Boltzmann distribution constantly leaks hydrogen molecules to space.
-
-### Common misconceptions
-
-- *"All molecules at temperature T have the same speed."* No — they have a distribution of speeds (the Maxwell-Boltzmann distribution). $v_{\text{rms}}$ is just one statistical measure of that distribution.
-- *"At absolute zero, molecules stop moving entirely."* In classical kinetic theory, yes ($v = 0$ at $T = 0$). In quantum mechanics, no — there's a residual zero-point motion. We won't see this until Chapter 30.
-
-↳ **Dig Deeper — Maxwell-Boltzmann distribution and why hydrogen escaped Earth**
-
-*Maxwell, in the 1860s, derived the probability distribution of molecular speeds in a gas at thermal equilibrium. The distribution has a long tail: a significant fraction of molecules move much faster than the average. For light gases like hydrogen, this fast tail can exceed Earth's escape velocity, meaning the atmosphere slowly leaks hydrogen to space.*
-
-**Prompt:**
-> Sketch (in description) the Maxwell-Boltzmann speed distribution for a gas at fixed temperature. Note (a) the most probable speed (peak), (b) the mean speed, (c) the rms speed (which is slightly higher than the mean due to the high-speed tail). Then explain why Earth's atmosphere has retained nitrogen and oxygen but lost almost all hydrogen and helium: compute the fraction of hydrogen at room temperature exceeding Earth's escape velocity ($11{,}200 \text{ m/s}$) using the Maxwell-Boltzmann distribution. End with one sentence on why the Moon, with much lower escape velocity, has essentially no atmosphere.
-
-**What to do with the output:** Save it. The escape-of-hydrogen story is a beautiful application of statistical mechanics to planetary science.
+<!-- → [CHART: Bar chart of v_rms at 300 K for H₂, He, H₂O, N₂, O₂, CO₂ — bars in ascending order of molecular mass, heights decreasing. Earth escape velocity (11,200 m/s) and Moon escape velocity (2,380 m/s) shown as horizontal reference lines. Student should see immediately which gases escape from each body.] -->
 
 ---
 
-## Synthesis — temperature as the bridge from mechanics to thermodynamics
+## Where the gas law comes from
 
-Step back. Three concepts:
+The ideal gas law is not just an empirical summary. You can derive it from kinetic theory, and the derivation is worth seeing because it shows where both $P$ and $T$ come from at the molecular level.
 
-**Temperature** is what a thermometer measures. Three scales (Celsius, Fahrenheit, Kelvin), with kelvin tied to absolute zero and now defined via Boltzmann's constant. Solids expand thermally; the linear coefficient $\alpha$ is small but adds up.
+Imagine a cubic box of side $L$ containing $N$ molecules, each of mass $m$. Consider one molecule moving with speed $v_x$ in the $x$-direction. It bounces between two opposite walls. Each time it hits a wall, it reverses direction: momentum change $2mv_x$. The time between collisions with that wall is $2L/v_x$ (travel to the far wall and back). Force on the wall from this one molecule: momentum transfer divided by time:
 
-**Ideal gas law** ($PV = nRT$ or $PV = N k_B T$) relates pressure, volume, temperature, and amount of gas. Excellent approximation for most gases at non-extreme conditions.
+$$F_{\text{one}} = \frac{2mv_x}{2L/v_x} = \frac{mv_x^2}{L}.$$
 
-**Kinetic theory** bridges macro and micro: temperature is the average kinetic energy of randomly-moving molecules ($\tfrac{1}{2} m \overline{v^2} = \tfrac{3}{2} k_B T$). Pressure is the time-averaged momentum transfer to walls. The ideal gas law derives from kinetic theory.
+Sum over all $N$ molecules. Pressure is force per area, and area is $L^2$:
 
-The **scale shift**: temperature ranges from absolute zero ($0 \text{ K}$, no thermal motion) to the cores of stars ($10^7 \text{ K}$, plasma) to the early universe ($10^{32} \text{ K}$, beyond the Planck temperature where quantum gravity dominates). The same kinetic-theory relationship $\bar{KE} \sim k_B T$ applies across this range — only the regimes differ (classical at low T, relativistic at very high T, quantum-degenerate at very low T).
+$$P = \frac{F}{L^2} = \frac{Nm\overline{v_x^2}}{L^3} = \frac{Nm\overline{v_x^2}}{V}.$$
 
-### A worked example using all three concepts — air in a hot car
+Now, by symmetry, $\overline{v_x^2} = \overline{v_y^2} = \overline{v_z^2} = \tfrac{1}{3}\overline{v^2}$. So:
 
-A car's interior has volume $3.0 \text{ m}^3$, and at $20°\text{C}$ contains air at $1 \text{ atm}$. The car is parked in the sun and the interior temperature reaches $60°\text{C}$. The car is sealed (no air enters or leaves). (a) What is the new pressure inside? (b) What is the rms speed of N₂ molecules at the new temperature? (c) Has the volume changed measurably (assume the cabin is rigid)?
+$$P = \frac{Nm \cdot \tfrac{1}{3}\overline{v^2}}{V} = \frac{2}{3}\frac{N}{V} \cdot \frac{1}{2}m\overline{v^2}.$$
 
-**(a) Ideal gas law (constant V, n).** $P_1/T_1 = P_2/T_2$. $T_1 = 293 \text{ K}$, $T_2 = 333 \text{ K}$.
+But $\tfrac{1}{2}m\overline{v^2} = \tfrac{3}{2}k_BT$ (equipartition). Substitute:
 
-$$P_2 = P_1 \times T_2/T_1 = 101{,}000 \times 333/293 \approx 114{,}800 \text{ Pa}.$$
+$$P = \frac{2}{3}\frac{N}{V} \cdot \frac{3}{2}k_BT = \frac{Nk_BT}{V},$$
 
-About $1.13 \text{ atm}$ — a $13\%$ increase. (In practice, car windows are not perfectly sealed, so excess pressure leaks out, but the principle is the same.)
+which is $PV = Nk_BT$. The ideal gas law. Derived from Newton's second law applied to bouncing molecules, with temperature defined as average kinetic energy.
 
-**(b) RMS speed.** $v_{\text{rms}} = \sqrt{3 k_B T/m}$ for N₂:
+This derivation is one of the genuinely beautiful moments in physics. The macroscopic quantity on the left — pressure, something you measure with a gauge — follows algebraically from the microscopic picture on the right: $N$ molecules bouncing around with average energy $\tfrac{3}{2}k_BT$. Thermodynamics and mechanics are unified. "Pressure" is not a fundamental thing; it's what a very large number of collisions looks like when you can't track them individually.
 
-$$v_{\text{rms}} = \sqrt{\frac{3(1.38 \times 10^{-23})(333)}{4.65 \times 10^{-26}}} \approx 543 \text{ m/s}.$$
+<!-- → [FIGURE: Schematic of the derivation — a cube with side L, one molecule shown bouncing between two walls with velocity arrows v_x and -v_x, momentum-change label 2mv_x at the wall, time-between-collisions label 2L/v_x alongside the path. Caption: "The entire gas law in one molecule. Scale up to N, average over directions, substitute equipartition — done."] -->
 
-About $543 \text{ m/s}$ — slightly faster than at room temperature.
+---
 
-**(c) Volume change.** Linear thermal expansion of steel from car body: $\alpha \sim 12 \times 10^{-6}$, $\Delta T = 40$, so $\Delta L/L = 4.8 \times 10^{-4}$. Volume expands by $3 \times \Delta L/L = 1.4 \times 10^{-3}$, or about $0.14\%$. Negligible compared to the gas's pressure response.
+## Three scales, one underlying reality
 
-**The synthesis** exercises all three concepts: thermal expansion (steel body, negligibly small effect on volume); ideal gas law (significant pressure rise); kinetic theory (faster-moving molecules at higher T). The dominant effect is the ideal-gas pressure rise — which is why car interiors get hot but rarely explode (small leaks through seals release the excess pressure).
+Step back. Temperature is what a thermometer measures — Celsius, Fahrenheit, or Kelvin, depending on the thermometer and the convention. But what it's measuring, at the atomic level, is the average kinetic energy of randomly-moving molecules. The Kelvin scale is "absolute" not because of an arbitrary convention but because zero kelvin is the point where that kinetic energy is zero — where the molecules stop.
+
+The ideal gas law $PV = nRT$ is a summary of three centuries of careful experiment — Boyle, Charles, Avogadro — but it also falls out in about ten lines of algebra from Newton's laws applied to molecules. Pressure is time-averaged momentum transfer. Temperature is average kinetic energy. Volume is just the container size. The three are linked because all three are aspects of the same molecular motion.
+
+Thermal expansion of solids fits into the same picture. Atoms vibrate in an asymmetric potential well. More temperature means more vibration means more displacement from center, averaged over time. Coefficient $\alpha$ is small because the asymmetry of the well is small. But the integrated effect over large structures is not small — as the railroad engineers in Maryland learned.
+
+The range of temperatures where this framework applies is extraordinary. Atmospheric chemistry at 250 K. A car engine at 1,000 K. The surface of the sun at 5,800 K. The core of a star at $10^7$ K. The same equation $\tfrac{1}{2}m\overline{v^2} = \tfrac{3}{2}k_BT$ runs through all of it, with corrections only at the extremes where quantum statistics or relativistic speeds become relevant. As a piece of unification — macroscopic thermodynamics and microscopic Newtonian mechanics joined by a single equation — it's hard to beat.
+
+---
+
+## Still puzzling
+
+*Why is there an absolute zero?* Classical kinetic theory says all molecular motion ceases at $T = 0$. Quantum mechanics says not quite: zero-point motion remains even at absolute zero, a consequence of the uncertainty principle. The third law of thermodynamics says you can get arbitrarily close to absolute zero but never actually reach it in a finite number of steps. Why zero is a limit rather than a value you can reach — why the last fraction of a kelvin requires infinitely many steps — is one of those things that statistical mechanics explains formally but doesn't make intuitively obvious.
+
+*Why does the Maxwell-Boltzmann distribution have the shape it does?* The distribution of speeds isn't just a bell curve. It's a skewed distribution with a long tail to high speeds. The peak (most probable speed) is lower than the mean, which is lower than the rms — there are more molecules moving slowly than moving very fast, but the very fast tail exists and matters. Deriving this distribution requires statistical mechanics — specifically, counting the number of ways to distribute total energy among molecules, then finding the distribution that maximizes that count subject to fixed total energy. That's the Boltzmann factor, and it underlies not just gas speeds but the population of atomic energy levels, the spectrum of thermal radiation, and the rates of chemical reactions.
+
+*Why do ideal gases exist at all?* The ideal gas is a model: point particles, no intermolecular forces. Real molecules are not points, and they do interact. Yet the ideal gas law works remarkably well for real gases at room temperature and moderate pressures. Why? Because at those conditions, molecules spend most of their time far apart — mean free path far exceeds molecular diameter — so interactions are brief and infrequent. The corrections (van der Waals, virial expansion) are small. The ideal limit is an excellent approximation because the gas is mostly empty space.
 
 ---
 
@@ -287,37 +176,61 @@ About $543 \text{ m/s}$ — slightly faster than at room temperature.
 
 ### Warm-up
 
-**13.1** *(LO 1)* Convert: (a) 25°C to Fahrenheit and Kelvin; (b) 100°F to Celsius and Kelvin; (c) 0 K to Celsius and Fahrenheit.
+**W1.** Convert the following temperatures, showing your work: (a) 37°C (body temperature) to Fahrenheit and Kelvin; (b) 98.6°F to Celsius and Kelvin; (c) 0 K to Celsius and Fahrenheit. What do you notice about (a) and (b)?
 
-**13.2** *(LO 2)* A steel bridge $1{,}000 \text{ m}$ long is built at $15°\text{C}$. By how much does it expand when the temperature reaches $40°\text{C}$? ($\alpha_{\text{steel}} = 12 \times 10^{-6}/K$.)
+*Tests: temperature-scale conversions and the physical meaning of absolute zero. Difficulty: low.*
 
-**13.3** *(LO 3)* A balloon contains $0.10 \text{ mol}$ of helium at $300 \text{ K}$ and $1 \text{ atm}$. What is its volume?
+**W2.** A steel bridge span is 500 m long at 10°C. By how much does it expand when the temperature reaches 38°C? ($\alpha_\text{steel} = 12 \times 10^{-6}/\text{K}$.) Express the answer in both meters and as a fraction of the original length.
 
-**13.4** *(LO 4)* Compute the rms speed of helium atoms at $300 \text{ K}$. ($m_{\text{He}} = 6.65 \times 10^{-27} \text{ kg}$.)
+*Tests: linear thermal expansion formula, dimensional check. Difficulty: low.*
+
+**W3.** A sealed container holds 0.20 mol of helium at 300 K and 1.0 atm. (a) What is the volume? (b) If the temperature is raised to 450 K at constant volume, what is the new pressure?
+
+*Tests: direct application of $PV = nRT$ in both constant-volume and constant-temperature versions. Difficulty: low.*
+
+**W4.** Compute $v_\text{rms}$ for helium atoms at 300 K. ($m_\text{He} = 6.65 \times 10^{-27}$ kg.) Compare to the speed of sound in air (~343 m/s).
+
+*Tests: kinetic-theory formula for rms speed. Difficulty: low.*
+
+---
 
 ### Application
 
-**13.5** *(LO 2)* A glass beaker ($V_0 = 500 \text{ mL}$) is filled with water at $20°\text{C}$. The water and beaker are heated to $80°\text{C}$. (a) Volume increase of the water? ($\beta_{\text{water}} = 210 \times 10^{-6}/K$.) (b) Volume increase of the beaker (Pyrex, $\alpha = 3 \times 10^{-6}/K$)? (c) What spills over?
+**A1.** A glass beaker (Pyrex, $\alpha = 3 \times 10^{-6}/\text{K}$, volume $V_0 = 500$ mL) is filled to the brim with water at 20°C. The beaker and water are heated together to 80°C. (a) By how much does the water volume increase? ($\beta_\text{water} = 210 \times 10^{-6}/\text{K}$.) (b) By how much does the beaker's interior volume increase? (Use $\beta \approx 3\alpha$ for Pyrex.) (c) How much water spills over?
 
-**13.6** *(LO 3)* A scuba diver's tank contains $11.0 \text{ L}$ of air at $200 \text{ atm}$ and $20°\text{C}$. (a) How many moles of gas? (b) If the diver descends to $30 \text{ m}$ depth (ambient pressure $\sim 4 \text{ atm}$) and uses a regulator that maintains the air at ambient pressure, how many liters of air does the tank effectively contain (at depth pressure)?
+*Tests: volumetric vs. linear expansion, and the consequence of different expansion coefficients for container and contents. Difficulty: medium.*
 
-**13.7** *(LO 3)* A car tire is inflated to gauge pressure $200 \text{ kPa}$ at $15°\text{C}$. After driving, tire temperature reaches $50°\text{C}$. New gauge pressure?
+**A2.** A car tire is inflated to gauge pressure 220 kPa at 15°C. After a long drive the tire temperature reaches 48°C. Assuming volume is constant, find the new gauge pressure. (Remember: the gas law requires absolute pressure.)
 
-**13.8** *(LO 4)* At what temperature would the rms speed of nitrogen molecules ($m = 4.65 \times 10^{-26} \text{ kg}$) equal the escape velocity from Earth's surface ($11{,}200 \text{ m/s}$)?
+*Tests: ideal gas law at constant volume, and the gauge-vs.-absolute pressure distinction. Difficulty: medium.*
+
+**A3.** A scuba diver's tank holds 12.0 L of air at 200 atm and 20°C. (a) How many moles of gas are in the tank? (b) At a depth of 30 m, the ambient pressure is approximately 4.0 atm. If the regulator delivers air at ambient pressure and the temperature stays at 20°C, what volume of air (at depth pressure) does the tank effectively contain?
+
+*Tests: ideal gas law with large pressure ratios; requires careful tracking of which variables are held fixed. Difficulty: medium.*
+
+**A4.** At what temperature would the rms speed of nitrogen molecules ($m = 4.65 \times 10^{-26}$ kg) equal the speed of sound in air at room temperature (343 m/s)? At what temperature would it equal Earth's escape velocity (11,200 m/s)?
+
+*Tests: inverting the $v_\text{rms}$ formula to solve for $T$; connects molecular speed to macroscopically meaningful velocities. Difficulty: medium.*
+
+---
 
 ### Synthesis
 
-**13.9** *(LO 1, 2)* The Eiffel Tower is $324 \text{ m}$ tall, made of iron ($\alpha = 12 \times 10^{-6}/K$). On a winter day at $-10°\text{C}$, it's at one height; on a summer day at $40°\text{C}$, it's at another. By how much does its height change?
+**S1.** The Eiffel Tower is approximately 300 m tall and made primarily of iron ($\alpha = 12 \times 10^{-6}/\text{K}$). Paris temperatures range from about $-5$°C in winter to $+35$°C in summer. (a) By how much does the tower's height change between its coldest and hottest states? (b) The tower is anchored at its base. Estimate the compressive stress that would build up in the legs if the tower were rigidly prevented from expanding vertically. (Young's modulus for iron: $Y = 211 \times 10^9$ Pa.) Is this stress large enough to cause structural concern?
 
-**13.10** *(LO 3, 4)* A weather balloon at sea level has volume $5.0 \text{ m}^3$ at $20°\text{C}$ and $1 \text{ atm}$. It rises to $10 \text{ km}$ altitude where pressure is $0.26 \text{ atm}$ and temperature is $-50°\text{C}$. (a) What is its new volume? (b) Compute the rms speed of molecules in both conditions and compare.
+*Tests: thermal expansion combined with stress analysis; connects $\alpha$ to real engineering consequences. Difficulty: medium-high.*
 
-**13.11** *(LO 3)* Air contains about $78\%$ nitrogen by mole and $21\%$ oxygen. At $20°\text{C}$ and $1 \text{ atm}$, what is the partial pressure of each? What is the molar density (mol/L)?
+**S2.** A weather balloon is filled with 5.0 m³ of helium at sea level (20°C, 1.0 atm). It rises to an altitude of 10 km where the pressure is 0.26 atm and the temperature is $-50$°C. (a) What is the balloon's new volume? (b) Compute $v_\text{rms}$ for helium atoms at both altitudes. (c) The balloon is designed to burst when it reaches a volume of 30 m³. Will it burst before or after reaching 10 km? Estimate the altitude at which it bursts, assuming pressure drops roughly as $P \approx P_0 e^{-h/8500}$ with $h$ in meters.
+
+*Tests: ideal gas law with all three variables changing; kinetic-theory calculation at two conditions; requires combining the gas law with an exponential model. Difficulty: high.*
+
+---
 
 ### Challenge
 
-**13.12** *(LO 4, beyond chapter)* The escape velocity from the Moon is $2{,}380 \text{ m/s}$. (a) Compute the rms speed of N₂ molecules at the Moon's surface temperature ($T \sim 250 \text{ K}$). (b) Compute the rms speed of H₂. (c) Discuss why the Moon retains essentially no atmosphere.
+**C1.** Derive the ideal gas law $PV = Nk_BT$ from kinetic theory. Work through the argument in the text — one molecule bouncing in a box of side $L$, force on the wall, pressure — without skipping steps. At each stage, state explicitly what physical assumption you are using (elastic collision, symmetry of velocities among directions, equipartition). Identify the one step where thermodynamics enters — where a purely mechanical derivation hands off to a statistical one.
 
-**13.13** *(beyond chapter)* The ideal gas law fails for real gases at high pressure or low temperature. The Van der Waals equation $\left(P + \frac{an^2}{V^2}\right)(V - nb) = nRT$ corrects for intermolecular attraction (the $a$ term) and finite molecular volume (the $b$ term). For nitrogen at $25°\text{C}$, $a = 0.137 \text{ J·m}^3/\text{mol}^2$, $b = 3.87 \times 10^{-5} \text{ m}^3/\text{mol}$. (a) Compute the pressure of $1 \text{ mol}$ in $1 \text{ L}$ using both ideal gas law and Van der Waals. (b) At what density does the difference become significant (~$10\%$)?
+*Tests: reconstruction of the kinetic-theory derivation from first principles, with explicit attention to assumptions. Difficulty: high.*
 
 ---
 
@@ -376,38 +289,6 @@ Chapter 14 introduces heat itself — energy in transit due to temperature diffe
 
 ---
 
-## Chapter summary
-
-Three pillars. **Temperature**: what thermometers measure, with three scales (Celsius, Fahrenheit, Kelvin); kelvin is the absolute scale tied to molecular kinetic energy via $k_B$. Solids expand thermally with coefficient $\alpha$. **Ideal gas law** $PV = nRT$ (or $N k_B T$): empirical relation among pressure, volume, temperature, and amount. **Kinetic theory**: $\bar{KE} = \tfrac{3}{2} k_B T$. Pressure derives from molecular collisions with walls; temperature is just the average KE.
-
-The one idea that matters most: **temperature is microscopic kinetic energy.** "Hot" means the molecules are moving fast on average. This unification — macroscopic temperature ↔ microscopic motion — is one of the deepest in physics, and it's the entry to all of thermodynamics and statistical mechanics.
-
-The common mistake to watch for: **using Celsius (or Fahrenheit) where the gas law or kinetic theory requires kelvin.** The formulas $PV = nRT$ and $\bar{KE} = \tfrac{3}{2}k_B T$ require absolute temperature. Forgetting to convert produces wildly wrong answers.
-
-What you should now be able to teach someone else: how to convert temperatures between scales, how to compute thermal expansion, how to apply the ideal gas law to predict pressure/volume/temperature changes, how to compute molecular speeds from temperature, and why temperature is fundamentally just a measure of average molecular kinetic energy. Five skills, three organizing principles.
-
----
-
-## What would change my mind
-
-The chapter argues that the ideal gas law and kinetic theory are sufficient for most introductory and engineering applications, with corrections (Van der Waals, quantum statistics) handling extremes. The argument would need revision if a class of common gas behaviors required more than mild corrections — they generally don't, until you reach the very low-temperature regime where quantum statistics dominate (Bose-Einstein and Fermi-Dirac, beyond the chapter scope).
-
-## Still puzzling
-
-The deepest puzzle this chapter raises and does not resolve: **why is there an absolute zero?** Classical kinetic theory says all motion ceases at $T = 0$ — but quantum mechanics says zero-point motion remains even there. The third law of thermodynamics (Nernst's theorem) says you can approach absolute zero arbitrarily closely but never actually reach it. The deeper reason — whether it has to do with information, entropy, or the structure of quantum states — is still being explored.
-
----
-
-## Connections forward
-
-Chapter 14 introduces heat — energy transfer driven by temperature difference. Heat capacity, specific heat, latent heat for phase changes. Modes of transfer: conduction, convection, radiation. Chapter 15 introduces the laws of thermodynamics — energy conservation including heat (first law), entropy and irreversibility (second law), absolute zero (third law). Chapter 14–15 together build the framework that explains why heat engines have maximum efficiencies, why some processes are irreversible, and why the universe heads toward thermal equilibrium. Statistical mechanics (beyond intro) extends kinetic theory to all states of matter and provides the deeper foundation. The kelvin you defined in this chapter and the average KE per molecule remain the key quantities throughout.
-
----
-
-**Tags:** temperature, ideal-gas-law, kinetic-theory, thermal-expansion, kelvin
-
----
-
 ## AI Wayback Machine
 
 **Ludwig Boltzmann** founded statistical mechanics in the 1870s — showing that thermodynamic quantities like temperature emerge from the statistical behavior of molecules. He carved his entropy formula onto his own tombstone: S = k log W.
@@ -426,3 +307,7 @@ Who was Ludwig Boltzmann, and how does his statistical mechanics connect to the 
 - Ask it about Boltzmann's contested intellectual fights with Ernst Mach and Wilhelm Ostwald over whether atoms existed.
 
 What changes? What gets better? What gets worse?
+
+---
+
+**Tags:** temperature, ideal-gas-law, kinetic-theory, thermal-expansion, kelvin
