@@ -1,6 +1,6 @@
 # Chapter 3 — Heat Transfer
 
-**TL;DR.** Heat flows from hot to cold by three mechanisms: conduction (molecular collisions passing energy through matter), convection (bulk fluid carrying heat with it), and radiation (electromagnetic waves carrying energy through space, including vacuum). Each has a rate law. Fourier's law for conduction: $P = kA\,\Delta T/L$. Newton's law of cooling for convection: $P = hA\,\Delta T$. Stefan-Boltzmann for radiation: $P = \varepsilon\sigma A T^4$. Know these three and you can work out why your coffee cools, why fiberglass insulation works, and — remarkably — what temperature the surface of a star is, from its color, without going there.
+Heat flows from hot to cold by three mechanisms: conduction (molecular collisions passing energy through matter), convection (bulk fluid carrying heat with it), and radiation (electromagnetic waves carrying energy through space, including vacuum). Each has a rate law. Fourier's law for conduction: $P = kA\,\Delta T/L$. Newton's law of cooling for convection: $P = hA\,\Delta T$. Stefan-Boltzmann for radiation: $P = \varepsilon\sigma A T^4$. Know these three and you can work out why your coffee cools, why fiberglass insulation works, and — remarkably — what temperature the surface of a star is, from its color, without going there.
 
 ---
 
