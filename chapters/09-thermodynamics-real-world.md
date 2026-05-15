@@ -36,6 +36,8 @@ Superheat is one of the practical tools. If you heat the steam beyond its satura
 
 Reheat is a related strategy: expand the steam partway through the turbine, extract it, heat it again in a secondary boiler, and send it back in for the second half of the expansion. This is essentially running two Rankine cycles in sequence with a heat reinjection in between. It's operationally complicated and expensive, but modern ultra-supercritical coal plants use multiple reheat stages to push efficiencies toward 45 to 48%.
 
+<!-- → [FIGURE: Rankine cycle schematic — four components in a loop: boiler (Q_H in), turbine (W_T out), condenser (Q_C out), pump (W_P in). Arrows show direction of fluid flow and energy transfer. A second panel shows the T-s diagram (temperature vs. entropy) for the ideal cycle with the four processes labeled. Caption: "The Rankine cycle in hardware and in thermodynamic state space. The area enclosed by the T-s loop is the net work output per unit mass of working fluid."] -->
+
 ---
 
 ## Gas turbines and the Brayton cycle
@@ -60,6 +62,8 @@ Gas turbine captures 38% of the fuel as electricity. Of the remaining 62%, the R
 
 Modern advanced combined-cycle plants achieve 60 to 62% net electric efficiency — a factor of nearly two improvement over a simple gas turbine. The US Department of Energy's Advanced Turbine Program has targeted 65%, which would require higher firing temperatures, better cooling, and lower pressure losses throughout. It's a materials and engineering problem now more than a thermodynamics problem. The physics allows 65% or higher; the engineering is the constraint.
 
+<!-- → [FIGURE: Combined-cycle plant Sankey diagram — fuel energy (100%) entering from the left; Brayton gas turbine on top extracting 38% as electricity; exhaust stream at 62% feeding the Rankine steam cycle below; steam cycle extracting 22% as electricity; final heat rejection of 40% to cooling tower on the right. Caption: "The combined cycle captures two successive bites from the same fuel stream. The Carnot ceiling for the overall system is set by the highest temperature (combustion, ~1400°C) and the lowest (condenser, ~40°C) — about 82%. The real plant achieves 60%."] -->
+
 ---
 
 ## Refrigeration and the vapor-compression cycle
@@ -79,6 +83,8 @@ The practical cycle is the vapor-compression cycle: compress low-pressure refrig
 The throttling step is inherently irreversible. You're reducing pressure suddenly, which generates entropy. You can't avoid it entirely — you need to reduce the pressure somehow to get the refrigerant back to the low-pressure side. The expansion valve is simple, cheap, and reliable, but it wastes some of the work you put in at the compressor. An expansion turbine could recover some of that work, but it adds mechanical complexity. For household refrigerators, the valve wins on cost. For large industrial refrigeration plants, expansion turbines are sometimes worthwhile.
 
 The history of refrigerants is a case study in thermodynamics colliding with environmental chemistry. The first widely used synthetic refrigerant, R-12 (dichlorodifluoromethane, a CFC), was introduced in the 1930s — non-toxic, non-flammable, stable. Thermodynamically excellent. By the 1980s it was clear that CFCs were accumulating in the stratosphere and destroying ozone. The Montreal Protocol of 1987 phased them out. R-134a (an HFC, no chlorine, no ozone depletion) replaced R-12. Then climate scientists noted that HFCs are potent greenhouse gases. The industry is now transitioning again, toward low-global-warming-potential refrigerants: R-32, propane (R-290), carbon dioxide (R-744). Each transition requires new compressor designs because the thermodynamic properties of the working fluid change the optimal pressure ratio and cycle parameters. The physics of the vapor-compression cycle stays the same. The engineering recalibrates around new working fluids.
+
+<!-- → [TABLE: Refrigerant history — columns: refrigerant name, chemical family, ozone depletion potential (ODP), global warming potential (GWP), current status. Rows: R-12 (CFC, high ODP, high GWP, phased out), R-134a (HFC, zero ODP, high GWP, being phased out), R-32 (HFC, zero ODP, lower GWP, transitional), R-290/propane (natural, zero ODP, near-zero GWP, growing), R-744/CO₂ (natural, zero ODP, GWP=1, growing in commercial). Caption: "Each generation of refrigerant solves the environmental problem of the previous one while introducing a new constraint. The thermodynamic cycle is unchanged; only the working fluid and the hardware change."] -->
 
 ---
 
@@ -124,6 +130,8 @@ The atmosphere converts only about 2 to 4% of absorbed solar heat to kinetic ene
 
 Climate change doesn't violate any thermodynamics. It shifts the boundary conditions. More greenhouse gases reduce the effective temperature at which Earth radiates to space (because the radiation now originates from a higher, colder layer of the atmosphere rather than from the surface), which means the equilibrium surface temperature must rise. The circulation patterns of the atmospheric heat engine change in response. The thermodynamic principles are exact and well-understood. The complexity is in the coupling between the dynamics, the chemistry, and the radiation physics.
 
+<!-- → [FIGURE: Earth as a heat engine — schematic showing solar input (240 W/m² average) arriving at the surface, the atmospheric heat engine extracting ~2-4% as kinetic energy of winds and ocean currents, and the remainder re-radiated as infrared. Carnot efficiency bar (27%) shown alongside actual conversion efficiency (2-4%), with the gap labeled "irreversibility: precipitation, turbulent dissipation, absorption at low T." Caption: "The climate system is the largest heat engine on the planet. Its Carnot efficiency is 27%; it actually converts 2-4% of absorbed solar heat to mechanical work. The gap is not a design flaw — it's the second law operating at planetary scale."] -->
+
 ---
 
 ## What the efficiency gap is really about
@@ -136,6 +144,8 @@ Some losses are inherent to the cycle choice. The throttling valve in a vapor-co
 
 The Carnot efficiency is a ceiling derived from first principles. Every kilowatt of entropy generation between the hot reservoir and the cold one represents work you could have extracted but didn't. The engineering progress of the last two centuries has been, in large part, the story of identifying and reducing those entropy generation rates — with combined-cycle gas turbines, supercritical steam conditions, improved turbomachinery, and smarter heat integration — without ever crossing the ceiling.
 
+<!-- → [CHART: Bar chart comparing ideal vs. actual efficiencies for Rankine, simple Brayton, combined-cycle CCGT, household refrigerator (COP as fraction of Carnot COP), and heat pump (COP as fraction of Carnot COP). Each bar pair shows: Carnot/ideal limit (dark) and real-world achieved (light). Caption: "The gap between ideal and real is different for each machine, but the pattern is the same: real devices run at 40-70% of their thermodynamic ceiling. The combined cycle is the closest to its ceiling; the household refrigerator is furthest."] -->
+
 ---
 
 ## Still puzzling
@@ -145,6 +155,64 @@ The Carnot efficiency is a ceiling derived from first principles. Every kilowatt
 *What is the ultimate efficiency of computing?* Rolf Landauer showed in 1961 that erasing one bit of information has a minimum thermodynamic cost of $k_B T \ln 2$ — about $3 \times 10^{-21}$ J at room temperature. Current transistors dissipate something like $10^{-15}$ J per operation — a million times Landauer's limit. There's thermodynamic room for a millionfold improvement in computational energy efficiency before fundamental physics becomes the constraint. Whether the engineering to capture that room is achievable is an open question.
 
 *How much more efficient can combined cycles get?* The DOE Advanced Turbine Program targets 65% net electric efficiency for combined-cycle plants. Getting there requires firing temperatures above 1700°C, which requires either better ceramic thermal barrier coatings on turbine blades or novel cooling architectures. Materials science is the constraint, not thermodynamics.
+
+---
+
+## Exercises
+
+### Warm-up
+
+**W1.** A steam power plant operates with a boiler at 550°C (823 K) and a condenser at 35°C (308 K). (a) What is the Carnot efficiency limit? (b) If the plant actually achieves 40% efficiency, what fraction of the Carnot limit is that? (c) If 500 MW of heat enters the boiler, how much electrical power is generated and how much heat is rejected to the condenser?
+
+*Tests: Carnot efficiency formula applied to a Rankine plant; using efficiency to split power between useful output and waste heat. Difficulty: low.*
+
+**W2.** A household freezer maintains $-10$°C (263 K) in a kitchen at 22°C (295 K). (a) What is the Carnot COP? (b) If the actual COP is 2.8, how much electrical power does the refrigerator consume to remove 150 W of heat from the freezer? (c) How much heat is expelled to the kitchen?
+
+*Tests: COP definition and Carnot COP for a refrigerator; tracking heat flows including the work input. Difficulty: low.*
+
+**W3.** A gas turbine has a pressure ratio $r_p = 18$ and operates on air ($\gamma = 1.4$). (a) What is the ideal Brayton efficiency? (b) The turbine inlet temperature is 1300°C (1573 K) and the compressor inlet is 25°C (298 K). What is the Carnot efficiency for these temperatures? (c) Why is the Brayton efficiency lower than the Carnot efficiency?
+
+*Tests: Brayton efficiency formula and comparison to Carnot ceiling; the student must recognize that the Brayton efficiency is for the ideal cycle, which still falls short of Carnot because heat addition and rejection occur over ranges of temperature, not at fixed temperatures. Difficulty: medium.*
+
+---
+
+### Application
+
+**A1.** A gas turbine (simple Brayton cycle) with pressure ratio $r_p = 20$ and $\gamma = 1.4$ burns fuel at a rate equivalent to 400 MW of heat input. (a) Ideal Brayton efficiency? (b) Actual efficiency if turbine isentropic efficiency is 88% and compressor isentropic efficiency is 84%? (c) Electrical output and exhaust heat at actual efficiency?
+
+To estimate actual efficiency from isentropic efficiencies: the work extracted by the turbine is reduced by $\eta_T = 0.88$, and the work consumed by the compressor is increased by $1/\eta_C = 1/0.84$. Use the ideal work values from part (a), then adjust.
+
+*Tests: isentropic efficiency as the bridge from ideal to real cycle performance; quantifying how much each imperfect component costs. Difficulty: medium.*
+
+**A2.** The exhaust from the gas turbine in A1 exits at 580°C (853 K). This waste heat is fed into a Rankine bottom cycle with a condenser at 40°C (313 K). The Rankine cycle achieves 33% of its Carnot limit. (a) What is the Carnot efficiency of the bottom cycle? (b) What is the actual bottom-cycle efficiency? (c) How much additional electricity does the bottom cycle generate from the exhaust stream? (d) What is the combined-cycle total efficiency?
+
+*Tests: chaining two cycles in series using the waste-heat cascade; shows how combined-cycle efficiency emerges from sequential capture. Difficulty: medium-high.*
+
+**A3.** A heat pump heats a house in winter. Outdoor temperature: 2°C (275 K). Indoor setpoint: 21°C (294 K). The heat pump runs at 45% of its Carnot COP. (a) What is the Carnot COP for heating? (b) What is the actual COP? (c) At what rate must the heat pump consume electricity to deliver 8 kW of heat? (d) Compare to an electric resistance heater delivering the same 8 kW. What fraction of the electricity does the heat pump save?
+
+Note: COP for a heat pump (heating mode) $= T_H / (T_H - T_C)$.
+
+*Tests: heat-pump COP in heating mode; comparison with resistance heating makes the efficiency advantage concrete. Difficulty: medium.*
+
+---
+
+### Synthesis
+
+**S1.** A combined heat and power (CHP) plant burns 1000 MW of fuel. It generates electricity at 38% efficiency and captures 45% of the rejected heat for district heating (the remaining rejected heat is lost to the cooling system). (a) How much electricity is generated? (b) How much heat is available for district heating? (c) What is the overall energy utilization (electricity + useful heat, as a fraction of fuel input)? (d) Compare to: a standalone power plant at 38% efficiency plus a separate natural-gas boiler at 90% efficiency, each supplying the same electricity and heat. Which uses less fuel overall?
+
+*Tests: CHP energy accounting and comparison to the separate-systems baseline — the canonical argument for why cogeneration saves primary energy. Difficulty: medium-high.*
+
+**S2.** A data center consumes 80 MW of IT equipment power and has a PUE of 1.35. (a) What is the total facility power draw? (b) How much power goes to cooling and infrastructure? (c) The data center is in a warm climate where outdoor air cooling is unavailable; the chillers operate between a server-inlet temperature of 27°C (300 K) and an outdoor temperature of 35°C (308 K). What is the Carnot COP of this refrigeration system? (d) If the chillers run at 50% of Carnot COP, how much of the 80 MW of IT heat can be removed per watt of chiller electricity? (e) What PUE would be achieved if free cooling (COP → ∞) became available? What does this tell you about the thermodynamic value of data-center siting?
+
+*Tests: PUE as an energy-accounting metric; connects refrigeration COP to operational cost and shows why geography matters thermodynamically. Difficulty: high.*
+
+---
+
+### Challenge
+
+**C1.** Derive the ideal Brayton efficiency $\eta = 1 - r_p^{(1-\gamma)/\gamma}$ from first principles. Start from the four Brayton processes: (1) isentropic compression from $T_1$ to $T_2$, (2) isobaric heat addition from $T_2$ to $T_3$, (3) isentropic expansion from $T_3$ to $T_4$, (4) isobaric heat rejection from $T_4$ to $T_1$. Use the isentropic relation $T_2/T_1 = r_p^{(\gamma-1)/\gamma}$ for both the compression and expansion steps. Show that $T_3/T_4 = T_2/T_1$, then write the efficiency as $\eta = 1 - Q_C/Q_H = 1 - (T_4 - T_1)/(T_3 - T_2)$ and simplify.
+
+*Tests: deriving the Brayton efficiency from the isentropic temperature relations — requires careful application of the isentrope relation at two different pressure ratios and algebraic simplification. Difficulty: high.*
 
 ---
 
