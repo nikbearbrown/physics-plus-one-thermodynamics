@@ -1,191 +1,182 @@
-# Chapter 3 — The Ideal Gas and Kinetic Theory
+# Chapter 4 — The Ideal Gas and Kinetic Theory
 
 *Deriving $PV = NkT$ from molecular collisions, and the Maxwell-Boltzmann distribution.*
 
 ---
 
-## Learning objectives
+Mars is losing its atmosphere. Not quickly — not on any timescale a human would notice — but over billions of years, the lighter molecules in the Martian atmosphere have been slowly leaking away into space. Hydrogen is essentially gone. Helium is gone. The atmosphere today is 95% carbon dioxide at a pressure of about 6 millibars — less than one percent of Earth's.
 
-By the end of this chapter you will be able to:
+The reason is a tail.
 
-1. **(Apply)** Derive the ideal gas law $PV = NkT = nRT$ from the molecular pressure calculation.
-2. **(Apply)** Use the Maxwell-Boltzmann distribution to compute $v_{mp}$, $v_{avg}$, $v_{rms}$ and predict the shape of the speed distribution.
-3. **(Apply)** Apply the equipartition theorem to predict molar heat capacities of monatomic and diatomic ideal gases.
-4. **(Analyze)** Identify when the ideal gas approximation breaks down and use the van der Waals equation as the next-order correction.
-5. **(Understand)** Connect the molecular picture (kinetic theory) to macroscopic gas laws.
-6. **(Apply)** Build a Maxwell-Boltzmann distribution explorer with adjustable temperature and molecular mass.
+The escape velocity from Mars is about 5 km/s. The root-mean-square speed of a hydrogen molecule at 200 K — the temperature of the Martian upper atmosphere — is about 1.6 km/s. Far below escape velocity. So hydrogen should stay, right? It doesn't. Because the rms speed is an average, and molecules are not all moving at the average. The Maxwell-Boltzmann distribution — the curve that describes how molecular speeds are spread out — has a long tail extending to high speeds. A small fraction of hydrogen molecules, at any given moment, are moving much faster than the average. Fast enough to escape.
 
----
+That fraction is small. Maybe one in a thousand. But "one in a thousand escapes per unit time" compounded over four billion years empties an atmosphere. The tail is the story.
 
-## Opening case: why Mars lost its atmosphere
-
-Mars is about half the diameter of Earth. Its gravitational escape velocity at the surface is $v_{\text{esc}} \approx 5.0$ km/s (vs. Earth's 11.2 km/s).
-
-For hydrogen molecules in the Martian upper atmosphere at $T \approx 200$ K: $v_{rms} = \sqrt{3 k_B T / m_{H_2}} = \sqrt{3 \cdot 1.38 \times 10^{-23} \cdot 200 / (2 \cdot 1.66 \times 10^{-27})} \approx 1.6$ km/s. Much less than escape velocity. *But* — the Maxwell-Boltzmann distribution has a *tail*. Some molecules move much faster than average. The fraction with $v > 5$ km/s is small but non-zero.
-
-Over billions of years, those tail molecules slowly escape Mars's gravity. Hydrogen leaks fastest (lightest); helium next; nitrogen and oxygen barely at all (too heavy at Mars's temperatures). The result: Mars lost essentially all its hydrogen long ago, and most of its lighter atmospheric components. Today, Mars's atmosphere is 95% CO₂ at 6 mbar — about 0.6% of Earth's atmospheric pressure.
-
-The chapter ahead is the kinetic theory that explains this. It also derives the ideal gas law, predicts the Maxwell-Boltzmann distribution, and sets up the equipartition theorem that governs heat capacities. The big picture: macroscopic gas behavior comes from molecular mechanics.
+This chapter derives that distribution. Along the way it also derives the ideal gas law — not as a postulate, but as a consequence of molecular mechanics. The big move is from the microscopic to the macroscopic: from molecules bouncing off walls to pressure, temperature, and volume as the things we can measure.
 
 ---
 
-## Core concept
+## The molecular derivation of $PV = NkT$
 
-### The ideal gas model
+Imagine a box of side length $L$, volume $V = L^3$, containing $N$ molecules each of mass $m$. Pick one molecule moving in the $+x$ direction with speed $v_x$. When it hits the right wall and bounces back elastically, the momentum transferred to the wall is $\Delta p = 2mv_x$. The time between successive collisions with the same wall is $2L/v_x$ — the molecule has to travel to the far wall and come back. So the average force that molecule exerts on the right wall is:
 
-A gas is treated as a collection of point particles (no internal structure) that:
-1. Move randomly with the Maxwell-Boltzmann distribution.
-2. Collide elastically with each other and the container walls.
-3. Have negligible volume compared to the container.
-4. Don't interact except during collisions (no intermolecular forces).
+$$F = \frac{\Delta p}{\Delta t} = \frac{2mv_x}{2L/v_x} = \frac{mv_x^2}{L}$$
 
-This is an idealization. Real gases at low density and moderate temperature behave close to ideal; deviations matter near phase transitions and at high density.
+Now sum over all $N$ molecules. Not all of them are moving in the $x$ direction, of course. In a gas in equilibrium, molecular motion is isotropic — no direction is preferred. So $\langle v_x^2 \rangle = \langle v_y^2 \rangle = \langle v_z^2 \rangle = \langle v^2 \rangle / 3$. The total force on the right wall is:
 
-### Deriving the ideal gas law
+$$F_{\text{total}} = \frac{Nm\langle v_x^2 \rangle}{L} = \frac{Nm\langle v^2 \rangle}{3L}$$
 
-Consider $N$ molecules of mass $m$ in a cubic box of side $L$ (volume $V = L^3$). Pick one molecule moving in the $+x$ direction with speed $v_x$. When it hits the right wall and bounces back, momentum transfer to wall: $\Delta p = 2 m v_x$. Time between collisions with the same wall: $2L/v_x$.
+Pressure is force per area. The wall has area $L^2$:
 
-Average force on the right wall from this one molecule: $F = \Delta p / \Delta t = (2 m v_x)/(2L/v_x) = m v_x^2 / L$.
+$$P = \frac{F_{\text{total}}}{L^2} = \frac{Nm\langle v^2 \rangle}{3L^3} = \frac{Nm\langle v^2 \rangle}{3V}$$
 
-Total force on the right wall from all $N$ molecules: $F_{\text{total}} = (N/3) m \langle v^2\rangle / L$ (factor of 1/3 because only one component of $v$ matters at any wall, and $\langle v_x^2\rangle = \langle v^2\rangle/3$).
+Now recall from Chapter 2 that temperature is defined by $T = m\langle v^2 \rangle / (3k_B)$, which means $m\langle v^2 \rangle = 3k_BT$. Substitute:
 
-Pressure: $P = F/A = F/L^2 = (N/3) m \langle v^2\rangle / L^3 = (N/3V) m \langle v^2\rangle$.
+$$P = \frac{N \cdot 3k_BT}{3V} = \frac{Nk_BT}{V}$$
 
-But $T = m\langle v^2\rangle / (3k_B)$, so $m\langle v^2\rangle = 3k_BT$. Substituting:
+$$\boxed{PV = Nk_BT}$$
 
-$$PV = N k_B T$$
-
-In terms of moles ($N = nN_A$):
+That is the ideal gas law — not postulated, but derived from Newton's second law applied to bouncing molecules plus the molecular definition of temperature. In terms of moles, where $N = nN_A$ and $R = N_A k_B = 8.314$ J/(mol·K):
 
 $$PV = nRT$$
 
-where $R = N_A k_B = 8.314$ J/(mol·K) is the universal gas constant.
-
-The ideal gas law isn't postulated — it's a *derived consequence* of molecular mechanics plus the definition of temperature.
-
-### The Maxwell-Boltzmann speed distribution
-
-For an ideal gas at temperature $T$, the fraction of molecules with speed between $v$ and $v + dv$ is
-
-$$f(v) \, dv = 4\pi \left(\frac{m}{2\pi k_B T}\right)^{3/2} v^2 e^{-mv^2/(2k_B T)} \, dv$$
-
-This distribution has three characteristic speeds:
-
-- **Most probable speed** (peak of $f(v)$): $v_{mp} = \sqrt{2k_BT/m}$
-- **Average speed**: $v_{avg} = \sqrt{8k_BT/(\pi m)}$
-- **Root-mean-square speed**: $v_{rms} = \sqrt{3k_BT/m}$
-
-Always $v_{mp} < v_{avg} < v_{rms}$ — the distribution is asymmetric, with a tail extending to high speeds.
-
-**Source:** Maxwell derived this in 1860; Boltzmann later generalized it. The derivation uses statistical mechanics; Chapter 8 redoes it from the Boltzmann distribution.
-
-**Effects of $T$:** higher $T$ broadens the distribution and shifts the peak right.
-
-**Effects of $m$:** heavier molecules at the same $T$ have *slower* distributions. At room temperature, hydrogen molecules average $\sim 1900$ m/s, nitrogen molecules $\sim 510$ m/s.
-
-### The equipartition theorem
-
-At thermal equilibrium, each *quadratic degree of freedom* of a system has average energy $\frac{1}{2} k_B T$.
-
-A monatomic atom has 3 translational degrees of freedom: 3 quadratic terms in the kinetic energy ($(1/2)mv_x^2 + (1/2)mv_y^2 + (1/2)mv_z^2$). Internal energy per atom: $U_1 = (3/2)k_BT$. Total internal energy: $U = (3/2)Nk_BT$. Heat capacity: $C_V = (3/2)Nk_B = (3/2)nR$.
-
-A diatomic molecule (N₂, O₂) at moderate temperature has 3 translational + 2 rotational degrees of freedom (only 2 rotational because rotation about the molecular axis carries no energy for a symmetric molecule). 5 quadratic terms. $U = (5/2)Nk_BT$. $C_V = (5/2)nR$.
-
-At very high temperatures, vibrational modes also activate — adding 2 more quadratic terms per mode (one for KE, one for PE in the harmonic oscillator). For N₂, vibrational mode activates at $T \gtrsim 3000$ K. $C_V$ jumps to $(7/2)nR$.
-
-**The quantum twist:** the equipartition theorem assumes *classical* harmonic oscillator. At low $T$ where $k_B T < \hbar\omega$ for the mode, quantum effects "freeze out" the mode and equipartition fails. Chapter 8 explains why.
-
-### Real gases and van der Waals
-
-The ideal gas law fails when (a) molecules are close together (high density), (b) temperatures are low, or (c) the gas is near a phase transition. The simplest correction is the **van der Waals equation**:
-
-$$\left(P + \frac{a n^2}{V^2}\right)(V - nb) = nRT$$
-
-The $a$ term accounts for **attractive intermolecular forces** (reducing effective pressure). The $b$ term accounts for **finite molecular volume** (reducing effective container volume).
-
-For CO₂: $a = 3.64$ L²·atm/mol², $b = 0.0427$ L/mol.
-
-At low density / high temperature, van der Waals reduces to the ideal gas law. Near the critical point, van der Waals predicts a first-order phase transition (liquid ↔ vapor) — qualitatively correct, quantitatively approximate.
-
-### Dalton's law of partial pressures
-
-In a mixture of $N$ non-reacting ideal gases at the same temperature, the total pressure is the sum of partial pressures:
-
-$$P_{\text{total}} = P_1 + P_2 + \cdots + P_N$$
-
-where $P_i = n_i RT/V$ for each gas as if it were alone. This is a direct consequence of the molecular picture: each species contributes its share of momentum-transfer-per-area to the walls.
+The ideal gas law is not a fundamental law of nature. It is a consequence of a model: point particles, no intermolecular forces, elastic collisions. When those assumptions hold — low density, moderate temperature, far from any phase transition — the law works with remarkable accuracy. When they fail, we need corrections.
 
 ---
 
-## Worked example: O₂ at room temperature
+## The model and its assumptions
 
-$N$ moles of oxygen (O₂, molar mass $M = 32$ g/mol) at $T = 300$ K. Find $v_{mp}$, $v_{avg}$, $v_{rms}$ and verify ordering.
+The ideal gas model makes four claims about the molecules:
 
-**Molecular mass:** $m = M/N_A = (0.032 \text{ kg/mol})/(6.022 \times 10^{23}/\text{mol}) = 5.31 \times 10^{-26}$ kg.
+They are point particles with no internal structure. They move randomly, with speeds distributed according to the Maxwell-Boltzmann distribution. They collide elastically with each other and the container walls — no energy is lost to vibration of the wall or to internal molecular modes. And they exert no forces on each other except during collisions — no attraction at distance, no repulsion until contact.
 
-**Compute each:**
-- $v_{mp} = \sqrt{2 k_B T / m} = \sqrt{2 \cdot 1.38 \times 10^{-23} \cdot 300 / 5.31 \times 10^{-26}} = \sqrt{156,000} \approx 395$ m/s.
-- $v_{avg} = \sqrt{8 k_B T / (\pi m)} = \sqrt{(8/\pi) \cdot 156,000 / 2} \approx 446$ m/s.
+None of these is exactly true for any real gas. Real molecules have finite size. They attract each other weakly at intermediate distances and repel strongly at short distances. Collisions with walls are not perfectly elastic — walls heat up. But at low density and moderate temperature, the corrections are small. The ideal gas model is the right starting point, and real-gas behavior is a perturbation on top of it.
 
-Actually let me redo: $\sqrt{8 k_B T/(\pi m)} = \sqrt{(8/\pi)} \cdot \sqrt{k_BT/m}$. We have $\sqrt{k_BT/m} = \sqrt{156,000/2} = \sqrt{78,000} \approx 279$ m/s, so $v_{avg} = \sqrt{8/\pi} \cdot 279 \approx 1.596 \cdot 279 \approx 446$ m/s.
-
-- $v_{rms} = \sqrt{3 k_B T / m} = \sqrt{1.5 \cdot 156,000} = \sqrt{234,000} \approx 484$ m/s.
-
-**Verify ordering:** $395 < 446 < 484$. ✓
-
-**The lesson.** At room temperature, oxygen molecules average about 400–500 m/s — comparable to the speed of sound in air. The exact value depends on which "average" you mean.
-
-**The limit.** This is the *ideal-gas, classical, single-species* calculation. At very low temperatures (cryogenic), quantum effects appear — Bose-Einstein condensation of a gas of bosonic atoms requires the molecules to slow to $\sim$ μm/s. At extremely high temperatures, ionization and dissociation dominate, and the gas becomes a plasma.
+There is a useful way to think about when the model breaks down. The corrections matter when (a) the volume of the molecules themselves is not negligible compared to the container volume, or (b) when the average kinetic energy per molecule is comparable to the intermolecular potential energy. Both conditions are met at high pressure or low temperature — near liquefaction. The correction that addresses both is the van der Waals equation, which I will return to at the end of this chapter.
 
 ---
 
-## Common misconceptions
+## The Maxwell-Boltzmann distribution
 
-**"All molecules in a gas at temperature T have the same speed."** False — they have a distribution. $T$ controls the *average* (specifically the second moment of the distribution); individual molecules range from near-zero to many times $v_{rms}$.
+The ideal gas law tells us about averages. But the atmosphere-escape story requires knowing not just the average molecular speed, but how the speeds are *distributed* — specifically, how much probability sits in the tail.
 
-**"Heavier gases at the same T are hotter."** Temperature depends on $\langle KE\rangle$, not $\langle v\rangle$. Heavier molecules at the same $T$ are *slower*. Hydrogen at 300 K: $v_{rms} \approx 1930$ m/s. Carbon dioxide at 300 K: $v_{rms} \approx 411$ m/s.
+The distribution of molecular speeds in an ideal gas at temperature $T$ is:
 
-**"The ideal gas law is always accurate."** It works well for low-density gases. At high pressure, low temperature, or near a phase transition, intermolecular forces and finite molecular volume become important — van der Waals or more sophisticated equations of state are needed.
+$$f(v) = 4\pi \left(\frac{m}{2\pi k_B T}\right)^{3/2} v^2 \, e^{-mv^2/(2k_BT)}$$
 
-**"The Maxwell-Boltzmann distribution is symmetric."** It's *not*. It's a skewed distribution with a tail extending to high speeds. That tail is what allows hydrogen to escape Mars's atmosphere.
+This is the Maxwell-Boltzmann speed distribution. Maxwell derived it in 1860 by a statistical argument; Boltzmann later gave it a more rigorous foundation in statistical mechanics. We will rederive it properly in Chapter 9 using the Boltzmann distribution. For now, let me explain what each piece means and why the distribution has the shape it does.
 
-**"Equipartition is a fundamental law."** It's a classical result. Quantum mechanics (Chapter 8) explains *why it breaks down* at low temperatures — vibrational modes "freeze out" when $k_BT$ falls below their quantum energy spacing.
+The factor $e^{-mv^2/(2k_BT)}$ is the Boltzmann factor. It says that the probability of a molecule having kinetic energy $E = \frac{1}{2}mv^2$ is proportional to $e^{-E/k_BT}$. High-energy states are exponentially suppressed. This factor alone would give a distribution that decreases monotonically from zero speed — but that is not what we observe, because at exactly $v = 0$ the probability also goes to zero.
+
+The reason is the $v^2$ factor in front. Speed is a magnitude — it is always positive. In three dimensions, the number of ways to have speed between $v$ and $v + dv$ is proportional to the surface area of a sphere of radius $v$ in velocity space, which is $4\pi v^2$. There are many more ways to have speed 400 m/s than speed 1 m/s, just from geometry. The $v^2$ factor multiplied by the decaying exponential produces a distribution that starts at zero, rises to a peak, then falls off exponentially.
+
+The peak — the most probable speed — is where $d(v^2 e^{-mv^2/2k_BT})/dv = 0$. Working it out:
+
+$$v_{mp} = \sqrt{\frac{2k_BT}{m}}$$
+
+The mean speed, found by computing $\int_0^\infty v f(v) \, dv$, is:
+
+$$v_{avg} = \sqrt{\frac{8k_BT}{\pi m}}$$
+
+The root-mean-square speed, found from $\sqrt{\langle v^2 \rangle} = \sqrt{\int_0^\infty v^2 f(v) \, dv}$, is:
+
+$$v_{rms} = \sqrt{\frac{3k_BT}{m}}$$
+
+These three speeds are related by fixed numerical factors: $v_{mp} : v_{avg} : v_{rms} = 1 : \sqrt{4/\pi} : \sqrt{3/2} \approx 1 : 1.128 : 1.225$. They are always in this order. The distribution is asymmetric — skewed right — because the Boltzmann exponential cuts off the high-speed tail steeply, but the $v^2$ factor suppresses the low-speed end even more steeply.
+
+Let me compute all three for oxygen (O₂, molar mass $M = 32$ g/mol) at room temperature ($T = 300$ K). The molecular mass is $m = 0.032/6.022 \times 10^{23} = 5.31 \times 10^{-26}$ kg.
+
+$$v_{mp} = \sqrt{\frac{2 \times 1.38 \times 10^{-23} \times 300}{5.31 \times 10^{-26}}} = \sqrt{1.56 \times 10^5} \approx 395 \text{ m/s}$$
+
+$$v_{avg} = \sqrt{\frac{8}{\pi}} \times \sqrt{\frac{k_BT}{m}} = \sqrt{\frac{8}{\pi}} \times \sqrt{7.8 \times 10^4} \approx 446 \text{ m/s}$$
+
+$$v_{rms} = \sqrt{\frac{3 \times 1.38 \times 10^{-23} \times 300}{5.31 \times 10^{-26}}} = \sqrt{2.34 \times 10^5} \approx 484 \text{ m/s}$$
+
+Ordering confirmed: $395 < 446 < 484$. Oxygen molecules at room temperature are moving at about 400–500 m/s — comparable to the speed of sound in air, which is not a coincidence. Sound is a pressure wave propagated by molecular collisions; its speed is bounded by how fast the molecules themselves move.
 
 ---
 
-## Exercises
+## How temperature and mass shift the distribution
 
-**Warm-up (Apply).** Find $v_{rms}$ for nitrogen (N₂, $M = 28$) at $T = 300$ K.
+Two parameters control the shape of the Maxwell-Boltzmann distribution: temperature and molecular mass.
 
-**Apply.** Compute $v_{mp}, v_{avg}, v_{rms}$ for argon (Ar, $M = 40$) at $T = 500$ K. Verify ordering.
+Temperature: all three characteristic speeds scale as $\sqrt{T}$. Double the temperature and the speeds increase by $\sqrt{2} \approx 1.41$. The distribution shifts right and broadens. What was the far tail at low temperature moves into the body of the distribution at high temperature.
 
-**Apply.** A 1 mol sample of helium at $T = 300$ K, $V = 10$ L. (a) Pressure from ideal gas law. (b) Pressure from van der Waals ($a = 0.0341$ L²·atm/mol², $b = 0.0237$ L/mol). Are they close?
+Molecular mass: all three speeds scale as $1/\sqrt{m}$. Heavier molecules at the same temperature are slower. Hydrogen ($m \approx 2$ amu) at 300 K has $v_{rms} \approx 1930$ m/s. Nitrogen ($m \approx 28$ amu) at 300 K has $v_{rms} \approx 515$ m/s. Argon ($m \approx 40$ amu) at 300 K has $v_{rms} \approx 431$ m/s. The speed ratio scales as $\sqrt{m_N/m_H} = \sqrt{14} \approx 3.7$, and indeed hydrogen moves about 3.7 times faster than nitrogen at the same temperature.
 
-**Apply + Analyze.** For diatomic gas like O₂: predict $C_V$ at $T = 100$ K (rotation excited, vibration frozen), $T = 1000$ K (rotation + most of vibration), $T = 5000$ K (rotation + vibration fully classical).
+This mass dependence is the physics of atmospheric escape. Earth's escape velocity is 11.2 km/s — far above the rms speed of any significant atmospheric component at normal temperatures. Even hydrogen at 300 K has $v_{rms} = 1930$ m/s, roughly six times below escape velocity. But the tail of the Maxwell-Boltzmann distribution reaches arbitrarily high speeds. The fraction of hydrogen molecules above 11.2 km/s is about $10^{-50}$ — essentially zero. Earth keeps its hydrogen.
 
-**Apply (atmospheric escape).** Find the fraction of N₂ molecules in Earth's exosphere ($T = 1000$ K) with $v > 11.2$ km/s (escape velocity). Hint: integrate the Maxwell-Boltzmann distribution from $v_{\text{esc}}$ to infinity, or use a software estimate. (Answer: ~$10^{-50}$ — essentially zero. Earth keeps its nitrogen.)
+For Mars, with escape velocity 5.0 km/s and upper-atmosphere temperatures around 200 K, the tail fraction for hydrogen is about $10^{-3}$. One in a thousand hydrogen molecules is moving fast enough to escape at any moment. That rate, sustained over four billion years, is enough to strip the atmosphere. Nitrogen ($m = 28$) at the same conditions has an escape fraction closer to $10^{-100}$ — so Mars has kept its nitrogen and CO₂ while losing its hydrogen. The composition of a planetary atmosphere is a long integral of this distribution over geological time.
 
-**Challenge.** Mars: $T = 200$ K, escape velocity $v_{\text{esc}} = 5.0$ km/s. Find the fraction of hydrogen molecules (H₂, $M = 2$) above escape velocity. (Answer: ~$10^{-3}$ — small but non-zero. Hydrogen escapes Mars over geological time.)
+---
+
+## The equipartition theorem
+
+There is a simpler way to read the ideal gas law. It says $PV = Nk_BT$, and the pressure derivation shows that this equals $(2/3)N \times \langle KE \rangle_{\text{translational}}$. The average translational kinetic energy per molecule is therefore $\frac{3}{2}k_BT$ — three halves, one half for each spatial dimension.
+
+This is the equipartition theorem in its simplest form: each translational degree of freedom carries average energy $\frac{1}{2}k_BT$. "Degree of freedom" means an independent quadratic term in the energy — a mode that stores energy as the square of some coordinate or velocity component.
+
+Translation in $x$, $y$, $z$: three terms, $(1/2)mv_x^2 + (1/2)mv_y^2 + (1/2)mv_z^2$. Total translational energy per molecule: $\frac{3}{2}k_BT$.
+
+For a diatomic molecule — N₂, O₂, CO — there are also rotational modes. A dumbbell-shaped molecule can rotate about two axes perpendicular to the molecular bond; rotation about the bond axis itself contributes negligible energy (the moment of inertia about that axis is nearly zero for pointlike atoms). So two rotational degrees of freedom: $\frac{1}{2}I_1\omega_1^2 + \frac{1}{2}I_2\omega_2^2$. Total energy per molecule at moderate temperatures: $(3/2 + 2/2)k_BT = \frac{5}{2}k_BT$.
+
+At very high temperatures, vibrational modes activate. A diatomic molecule can vibrate along its bond, storing energy as both kinetic and potential energy — two quadratic terms per vibrational mode. When vibration is fully excited, total energy per molecule is $\frac{7}{2}k_BT$.
+
+The molar heat capacity at constant volume is $C_V = \partial U/\partial T = (f/2)Nk_B = (f/2)nR$, where $f$ is the number of active degrees of freedom. For a monatomic gas: $f = 3$, $C_V = \frac{3}{2}R \approx 12.5$ J/(mol·K). For a diatomic gas at moderate temperature: $f = 5$, $C_V = \frac{5}{2}R \approx 20.8$ J/(mol·K). These predictions match experimental data for noble gases and diatomic gases at room temperature with remarkable precision.
+
+But there is a problem. At low temperatures, $C_V$ for a diatomic gas drops toward $\frac{3}{2}R$ — as if the rotational modes have been "frozen out." At room temperature, vibration is also frozen for most diatomic gases. The equipartition theorem does not predict this. It is a classical result, and quantum mechanics breaks it: a mode can only absorb energy in discrete quanta $\hbar\omega$. When $k_BT \ll \hbar\omega$, the mode cannot be excited — it is frozen out. Chapter 9 explains why. For now, the takeaway is that equipartition works beautifully where it works, and its failures point directly toward quantum mechanics.
+
+---
+
+## Real gases: the van der Waals correction
+
+The ideal gas law assumes molecules have zero volume and zero intermolecular forces. Both assumptions fail for real gases. The simplest systematic correction is the van der Waals equation of state:
+
+$$\left(P + \frac{an^2}{V^2}\right)(V - nb) = nRT$$
+
+The constant $b$ is the excluded volume per mole — the volume one mole of molecules physically occupies and therefore unavailable to other molecules. Subtracting $nb$ from $V$ gives the effective free volume. For nitrogen: $b = 0.0385$ L/mol.
+
+The constant $a$ corrects for attractive intermolecular forces. When molecules attract each other, those near a wall are pulled slightly backward by their neighbors — reducing the force they exert on the wall. Pressure is therefore slightly less than the ideal prediction. Adding $an^2/V^2$ to the measured pressure recovers the ideal-gas-law quantity. For nitrogen: $a = 1.39$ L²·atm/mol².
+
+At low density (large $V$) and high temperature, $nb \ll V$ and $an^2/V^2 \ll P$, and van der Waals reduces to the ideal gas law. Near a phase transition — where the liquid and gas become indistinguishable at the critical point — the corrections become large and the equation predicts a first-order liquid-vapor transition. The prediction is qualitatively correct and quantitatively approximate; more sophisticated equations of state (Redlich-Kwong, Peng-Robinson) are used in chemical engineering. But van der Waals was the first to show that a simple modification of the ideal gas law could describe both gas and liquid phases in a single equation — a conceptual breakthrough, recognized with the Nobel Prize in 1910.
+
+---
+
+## Dalton's law
+
+One more consequence of the molecular picture: in a mixture of non-reacting ideal gases at the same temperature, the total pressure is the sum of the partial pressures each gas would exert alone.
+
+$$P_{\text{total}} = P_1 + P_2 + \cdots$$
+
+where $P_i = n_i RT/V$. Each species contributes momentum transfer to the walls independently; molecules of different types don't "know about" each other except during collisions, and at low density those collisions are rare. Air is approximately 78% nitrogen and 21% oxygen by mole fraction; at one atmosphere, nitrogen contributes about 0.78 atm and oxygen about 0.21 atm, with minor contributions from argon, CO₂, and water vapor making up the rest.
+
+---
+
+## What comes next
+
+The ideal gas law describes a gas in equilibrium. The Maxwell-Boltzmann distribution describes how energy is partitioned among its molecules. But thermodynamics is ultimately about *processes* — what happens when a gas expands, compresses, absorbs heat, does work. Chapter 5 introduces the first law of thermodynamics: $\Delta U = Q - W$. The tools built here — the relationship between $PV$ and temperature, the internal energy $U = (f/2)NkT$, the heat capacity $C_V$ — become the ingredients for analyzing isothermal, adiabatic, isochoric, and isobaric processes. The ideal gas is the working substance for the first two chapters on thermodynamic cycles.
 
 ---
 
 ## LLM Exercises
 
-### Build the Maxwell-Boltzmann explorer (`03-maxwell-boltzmann.html`)
+### Build the Maxwell-Boltzmann explorer (`04-maxwell-boltzmann.html`)
 
 > **Show.** Maxwell-Boltzmann speed distribution: $f(v) = 4\pi(m/(2\pi k_BT))^{3/2} v^2 e^{-mv^2/(2k_BT)}$. Three speeds: $v_{mp} = \sqrt{2k_BT/m}$, $v_{avg} = \sqrt{8k_BT/(\pi m)}$, $v_{rms} = \sqrt{3k_BT/m}$.
 >
 > **Say.** Build a Maxwell-Boltzmann distribution explorer.
 >
-> **Constrain.** D3 v7. Slider for $T$ (100–2000 K). Dropdown for molecular species: H₂ (M=2), He (4), N₂ (28), O₂ (32), Ar (40), CO₂ (44). Compute and display $f(v)$ as an area chart, with $v_{mp}, v_{avg}, v_{rms}$ marked as vertical lines (color-coded). Numerical readouts of all three speeds. Display the "escape fraction" — fraction of molecules above 11.2 km/s (Earth escape) and above 5.0 km/s (Mars escape). Two-curve overlay mode: compare two temperatures or two species. Filename: `03-maxwell-boltzmann.html`.
+> **Constrain.** D3 v7. Slider for $T$ (100–2000 K). Dropdown for molecular species: H₂ (M=2), He (4), N₂ (28), O₂ (32), Ar (40), CO₂ (44). Compute and display $f(v)$ as an area chart, with $v_{mp}, v_{avg}, v_{rms}$ marked as vertical lines (color-coded). Numerical readouts of all three speeds. Display the "escape fraction" — fraction of molecules above 11.2 km/s (Earth escape) and above 5.0 km/s (Mars escape). Two-curve overlay mode: compare two temperatures or two species. Filename: `04-maxwell-boltzmann.html`.
 >
 > **Verify.** (a) At higher $T$, distribution broadens and shifts right. (b) At higher $m$, distribution narrows and shifts left. (c) Always $v_{mp} < v_{avg} < v_{rms}$. (d) Escape fraction for H₂ on Mars at 200 K: about $10^{-3}$.
 
 ### Exploration
 
-- Compare H₂ at 300 K and N₂ at 300 K. Verify that the lighter molecule has a much faster distribution.
-- Look at the escape fractions for various atmospheres: H₂ at Mars (200 K) vs N₂ at Earth (288 K). Mars has lost its hydrogen; Earth keeps its nitrogen.
-- At what temperature does the average speed of nitrogen equal the speed of sound in air (343 m/s)? (Answer: around 300 K — coincidence, but instructive.)
+Compare H₂ at 300 K and N₂ at 300 K. Verify that the lighter molecule has a much faster distribution.
+
+Look at the escape fractions for various atmospheres: H₂ at Mars (200 K) vs N₂ at Earth (288 K). Mars has lost its hydrogen; Earth keeps its nitrogen.
+
+At what temperature does the average speed of nitrogen equal the speed of sound in air (343 m/s)? Around 300 K — instructive.
 
 ### Extension prompt (chapter bridge)
 
@@ -197,23 +188,4 @@ Actually let me redo: $\sqrt{8 k_B T/(\pi m)} = \sqrt{(8/\pi)} \cdot \sqrt{k_BT/
 >
 > **Verify.** Isothermal: $\Delta U = 0$ so $Q = W$. Adiabatic: $Q = 0$ so $\Delta U = -W$. Isochoric: $W = 0$ so $Q = \Delta U$. Isobaric: $W = P\Delta V$, $Q = \Delta U + W$.
 
-Save as `03b-first-law-preview.html`. Bridge to Chapter 4.
-
----
-
-## What would change my mind
-
-The ideal gas law has been verified empirically over centuries of measurements; the molecular derivation is a textbook calculation that requires only Newton's laws and the definition of temperature. The Maxwell-Boltzmann distribution has been confirmed in countless experiments — molecular beam apparatuses, atomic clocks, plasma physics, and (subtly) in spectroscopic line shapes. A confirmed deviation from these predictions for a *low-density gas of non-interacting molecules* would shake the foundations. None exists.
-
-Real gases deviate from ideal behavior in known, quantitative ways. The van der Waals equation captures the first-order correction; more sophisticated equations of state (Redlich-Kwong, Peng-Robinson, etc.) capture higher-order effects. None challenges the underlying molecular picture.
-
-## Still puzzling
-
-- *Why does equipartition fail at low T?* Because energy levels are quantized; modes whose energy spacing exceeds $k_B T$ can't be excited. The "freezing out" of vibrational modes is the simplest case. Chapter 8 explains this in detail.
-- *What about quantum gases at low T?* Bose-Einstein condensation and degenerate Fermi gases (cold neutron stars, white dwarfs) — none of these obey classical kinetic theory. Required: quantum statistics (Ch 8).
-- *What about plasma?* At high enough $T$, electrons get knocked off atoms. The gas becomes a plasma — neutral overall but with mobile charged particles. Plasma physics is its own field; the chapter is for *neutral* gases.
-
----
-
-**Tags:** ideal gas law, kinetic theory, Maxwell-Boltzmann distribution, $v_{mp}$, $v_{avg}$, $v_{rms}$, equipartition theorem, degrees of freedom, van der Waals equation, atmospheric escape
-
+Save as `04b-first-law-preview.html`. Bridge to Chapter 5.
