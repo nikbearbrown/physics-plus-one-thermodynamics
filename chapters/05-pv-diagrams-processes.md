@@ -4,172 +4,209 @@
 
 ---
 
-## Learning objectives
+## The Pressure-Volume Diagram
 
-By the end of this chapter you will be able to:
+I want to start with something that sounds almost too simple to bother with.
 
-1. **(Apply)** Draw isothermal, isochoric, isobaric, and adiabatic processes on a PV diagram with correct shapes.
-2. **(Apply)** Compute work for each process type, recognizing $W = \int P\,dV$ as the area under the curve.
-3. **(Analyze)** Identify which process curve is steeper at a given point on a PV diagram (adiabatic vs. isothermal).
-4. **(Apply)** Compute net work for a thermodynamic cycle as the area enclosed on the PV diagram.
-5. **(Apply)** Analyze the Otto cycle as an idealized model of a gasoline engine.
-6. **(Apply)** Build an animated PV diagram simulator with all four process types and cycle chains.
+A gas has a pressure. It has a volume. If we write those two numbers down — $P$ on one axis, $V$ on the other — we get a point. That point is the *state* of the gas. Everything about the gas's macroscopic condition is captured in that dot on the diagram (given that we also know $n$, because $T$ follows from $PV = nRT$).
 
----
+Now suppose we change the gas slowly — compress it, heat it, let it expand. The point moves. It traces a *curve*. That curve is a *process*. And if we run the gas through a sequence of processes that brings it back to where it started, the curve closes on itself. That closed curve is a *cycle*.
 
-## Opening case: the four-stroke engine
+This is the PV diagram. It's a map. Every quasi-static process the gas can undergo is a path on this map; every state is a point; every cycle is a closed loop. Once you learn to read it, you can analyze any heat engine in the world without doing anything more complicated than identifying curves and measuring areas.
 
-A gasoline engine in a typical car cycles through four "strokes" per crankshaft rotation pair:
-1. **Intake** — piston moves down, drawing in fuel-air mixture. (Approximately isobaric, atmospheric pressure.)
-2. **Compression** — piston moves up; the closed cylinder's contents are compressed. (Approximately adiabatic.)
-3. **Power** — spark plug ignites fuel; combustion adds heat; piston pushed down. (Approximately isochoric heat addition, then adiabatic expansion.)
-4. **Exhaust** — piston moves up, expelling burned products.
+The reason we care about areas is this. The work done *by* the gas during any quasi-static process — any process slow enough that the gas remains in equilibrium throughout — is:
 
-Idealized, this is the **Otto cycle**: two adiabats + two isochors on a PV diagram. The enclosed area is the net work per cycle. Real engines deviate from the ideal Otto (friction, incomplete combustion, finite-time effects), but the idealized cycle is the conceptual foundation of *every* gasoline engine.
+$$W = \int_{V_i}^{V_f} P\,dV$$
 
-The chapter ahead is the PV diagram — the central visual tool of classical thermodynamics. Each thermodynamic process becomes a curve; each cycle a closed path; net work the enclosed area. Once you can read PV diagrams, you can analyze any heat engine.
+That's the area under the $P(V)$ curve, between the initial and final volumes. If the gas expands (moves right on the diagram), it does positive work. If it's compressed (moves left), work is done *on* the gas and $W$ is negative. For a complete cycle, the net work is the *enclosed* area.
+
+<!-- → [DIAGRAM: PV axes (P vertical, V horizontal) with a single smooth process curve from state A (left) to state B (right); the region between the curve and the V-axis shaded in a single color — caption: "The shaded area IS the work; this is not a metaphor, it is the definition. Expansion rightward = positive; compression leftward = negative."] -->
+
+This is not an approximation. It's exact, for quasi-static processes. It follows directly from the definition of work: force times displacement. In a cylinder, the force the gas exerts on a piston is $F = PA$; the displacement of the piston is $dL$; the volume change is $dV = A\,dL$. So $F\,dL = P\,dV$. That's it. The integral over the process gives you the work.
 
 ---
 
-## Core concept
+## The Four Processes
 
-### The PV diagram
+There are four processes worth knowing by name. Each one holds something constant, and each one has a distinctive shape on the PV diagram.
 
-A point on the PV diagram is a state (a specific $P$, $V$, $T$). A curve is a process — a quasi-static path between states. A closed curve is a cycle — a sequence of processes that returns to the start.
+**Isothermal** — temperature constant. From $PV = nRT$, if $T$ is constant then $PV = \text{constant}$. On the PV diagram, that's a hyperbola — curves that sweep down and to the right, one hyperbola per temperature. Hotter gas sits on a higher hyperbola; cooler gas on a lower one. The work is:
 
-**Work** done by the gas during any quasi-static process: $W = \int_{V_1}^{V_2} P\,dV$. Geometrically: area under the $P(V)$ curve between $V_1$ and $V_2$.
+$$W_{\text{iso}} = nRT\ln\!\left(\frac{V_f}{V_i}\right)$$
 
-For a cycle (closed curve): net work = enclosed area. Clockwise cycle: net work positive (engine). Counterclockwise: negative (refrigerator).
+For an ideal gas, internal energy depends only on temperature: $\Delta U = nC_V\Delta T = 0$ during an isothermal. So all the work the gas does comes straight from heat absorbed: $Q = W$.
 
-### The four canonical processes
+**Isochoric** — volume constant. Vertical line on the PV diagram. The gas can't move the piston, so $W = 0$. All the heat goes into changing the internal energy: $Q = \Delta U = nC_V\Delta T$.
 
-**Isothermal** ($T$ = constant):
-- Equation: $PV = nRT$ = constant — hyperbola.
-- Work: $W = nRT \ln(V_f/V_i)$.
-- For ideal gas: $\Delta U = 0$, so $Q = W$.
+**Isobaric** — pressure constant. Horizontal line. Work is simply $W = P\Delta V$. Heat goes partly into work, partly into raising the internal energy: $Q = nC_P\Delta T$, where $C_P > C_V$ by exactly $R$ per mole (because at constant pressure, some of the heat must do the work of expansion).
 
-**Isochoric** ($V$ = constant):
-- Equation: vertical line on PV diagram.
-- Work: $W = 0$.
-- $Q = \Delta U = nC_V \Delta T$.
+**Adiabatic** — no heat exchange, $Q = 0$. This one has the richest shape, and I want to spend a moment on why. If the gas can't exchange heat with anything, then all the work it does comes out of its internal energy: $dU = -P\,dV$. Combined with $dU = nC_V\,dT$ and the ideal-gas law, this gives the adiabatic constraint:
 
-**Isobaric** ($P$ = constant):
-- Equation: horizontal line on PV diagram.
-- Work: $W = P\Delta V$.
-- $Q = nC_P \Delta T$. $\Delta U = nC_V \Delta T$. $Q = \Delta U + W$.
+$$PV^\gamma = \text{constant}$$
 
-**Adiabatic** ($Q$ = 0): no heat exchange.
-- Equation: $PV^\gamma$ = constant, equivalently $TV^{\gamma-1}$ = constant, where $\gamma = C_P/C_V$ is the heat-capacity ratio.
-- Monatomic gas: $\gamma = 5/3 \approx 1.67$.
-- Diatomic gas (moderate $T$): $\gamma = 7/5 = 1.40$.
-- Work: $W = (P_i V_i - P_f V_f)/(\gamma - 1) = -\Delta U = -nC_V \Delta T$.
-- For *expansion*: $T$ drops; $W > 0$.
+where $\gamma = C_P/C_V$ is the ratio of heat capacities. For a monatomic gas like helium, $\gamma = 5/3 \approx 1.67$. For a diatomic gas like the nitrogen and oxygen in air, at moderate temperatures, $\gamma = 7/5 = 1.40$.
 
-### Adiabatic vs. isothermal: which is steeper?
+On the PV diagram, an adiabat looks like a hyperbola — but it's *steeper* than the isothermal at the same point. The slope of an isotherm at any point is $-P/V$. The slope of an adiabat is $-\gamma P/V$. Since $\gamma > 1$, the adiabat always slopes more steeply.
 
-At any given point on the PV diagram, *adiabatic curves are steeper than isothermal curves*.
+This has a physical interpretation. When a gas expands isothermally, it stays warm by absorbing heat from outside — so pressure doesn't fall as fast. When it expands adiabatically, it gets no heat from anywhere, so the temperature drops as the gas does work, and the pressure falls faster. The adiabat curves away beneath the isotherm.
 
-Why: isothermal $P = nRT/V$ has slope $-P/V$ on PV. Adiabatic $P = P_0 V_0^\gamma/V^\gamma$ has slope $-\gamma P/V$. Since $\gamma > 1$, adiabatic is steeper.
+Work along an adiabat:
 
-Physically: in an adiabatic expansion, the gas cools (no heat to replace what's lost to work), so pressure drops faster than in an isothermal expansion at the same final volume.
+$$W_{\text{ad}} = \frac{P_i V_i - P_f V_f}{\gamma - 1} = -\Delta U = -nC_V\Delta T$$
 
-This is the key visual that distinguishes the two processes on a PV diagram.
-
-### Thermodynamic cycles
-
-A cycle is a sequence of processes returning to the initial state. For a complete cycle: $\Delta U = 0$. Therefore $Q_{\text{net}} = W_{\text{net}}$ — net heat absorbed equals net work done.
-
-**Net work** = enclosed area on PV diagram. For a clockwise cycle (proceeding from low $V$ to high $V$ at the top of the loop, then back at lower $P$): net work is positive. The cycle is a *heat engine*.
-
-For a counterclockwise cycle: net work is negative — i.e., work is done *on* the gas. The cycle is a *refrigerator* or *heat pump*.
-
-### The Otto cycle (idealized gasoline engine)
-
-Four processes, all on the PV diagram:
-1. **Adiabatic compression** (1→2): air-fuel mixture is compressed without heat exchange. Steep, going up and to the left on the PV diagram.
-2. **Isochoric heat addition** (2→3): spark ignites the fuel; pressure rises at constant volume. Vertical line, going up.
-3. **Adiabatic expansion** (3→4): the hot, high-pressure gas drives the piston. Curve going down and to the right.
-4. **Isochoric heat rejection** (4→1): exhaust phase, modeled as cooling at constant volume. Vertical line, going down.
-
-**Compression ratio** $r = V_1/V_2 = V_4/V_3$. The bigger the $r$, the higher the engine's efficiency.
-
-**Otto cycle efficiency** (from first principles using $\Delta U$, $Q$, $W$ for each leg):
-
-$$\eta_{\text{Otto}} = 1 - \frac{1}{r^{\gamma-1}}$$
-
-For $r = 10$, $\gamma = 1.4$: $\eta \approx 1 - 10^{-0.4} \approx 1 - 0.398 = 60\%$. Real gasoline engines reach only 25–30% — far below the Otto ideal, because real combustion and exhaust are highly irreversible.
-
-### Refrigeration cycle (preview)
-
-Run the cycle counterclockwise. Work is *added* to the gas; heat is *extracted from* the cold reservoir and *deposited in* the hot reservoir. This is how refrigerators and air conditioners work — but with vapor-compression cycles rather than pure ideal-gas processes. Chapter 9 develops the real-world version.
+<!-- → [DIAGRAM: Single PV diagram showing all four process types originating from the same point — isothermal hyperbola (label: "isothermal, T = const"), adiabat (steeper, label: "adiabatic, Q = 0"), horizontal line (label: "isobaric, P = const"), vertical line (label: "isochoric, V = const"); the isothermal and adiabat should diverge visibly from each other to make the steepness comparison unmistakable; γ annotation at the divergence point] -->
 
 ---
 
-## Worked example: Otto cycle analysis
+## A Worked Example
 
-A simplified Otto engine: $r = 8$ (compression ratio), $\gamma = 1.4$ (diatomic air), initial conditions at state 1: $T_1 = 300$ K, $P_1 = 1$ atm = $101{,}325$ Pa, $V_1 = 1$ L = $10^{-3}$ m³.
+Let me work through a specific case so you can see the machinery in action.
 
-Heat added during isochoric heating (2→3): $Q_H = 1000$ J per cycle. Find $T$ at each state and the cycle efficiency.
+A gas at $P_i = 3$ atm $= 3.04 \times 10^5$ Pa occupies $V_i = 2$ L $= 2 \times 10^{-3}$ m³. It expands adiabatically ($\gamma = 1.4$) to $V_f = 6$ L.
 
-**State 2** (after adiabatic compression, $V_2 = V_1/r$):
-$T_2 = T_1 r^{\gamma-1} = 300 \cdot 8^{0.4} \approx 300 \cdot 2.30 = 690$ K.
-$V_2 = V_1/8 = 1.25 \times 10^{-4}$ m³.
-$P_2 = P_1 r^\gamma = 101{,}325 \cdot 8^{1.4} \approx 101{,}325 \cdot 18.4 = 1.86 \times 10^6$ Pa.
+First, find the final pressure using $PV^\gamma = \text{const}$:
 
-**State 3** (after isochoric heat addition):
-Need to know $n$ first. From state 1: $n = P_1V_1/(RT_1) = 101325 \cdot 10^{-3}/(8.314 \cdot 300) \approx 0.0406$ mol.
-$C_V = (5/2)R = 20.79$ J/(mol·K) (diatomic).
-$\Delta T = Q_H/(nC_V) = 1000/(0.0406 \cdot 20.79) \approx 1185$ K.
-$T_3 = T_2 + 1185 = 690 + 1185 = 1875$ K.
-$V_3 = V_2 = 1.25 \times 10^{-4}$ m³.
-$P_3 = nRT_3/V_3 = 0.0406 \cdot 8.314 \cdot 1875 / (1.25 \times 10^{-4}) \approx 5.07 \times 10^6$ Pa.
+$$P_f = P_i\left(\frac{V_i}{V_f}\right)^\gamma = 3.04 \times 10^5 \cdot \left(\frac{2}{6}\right)^{1.4}$$
 
-**State 4** (after adiabatic expansion back to $V_4 = V_1$):
-$T_4 = T_3 / r^{\gamma-1} = 1875 / 2.30 \approx 815$ K.
-$V_4 = V_1 = 10^{-3}$ m³.
-$P_4 = nRT_4/V_4 = 0.0406 \cdot 8.314 \cdot 815 / 10^{-3} \approx 2.75 \times 10^5$ Pa.
+$(2/6)^{1.4} = (0.333)^{1.4}$. Now, $0.333 = 3^{-1}$, so this is $3^{-1.4} \approx 0.209$. Therefore $P_f \approx 3.04 \times 10^5 \times 0.209 = 6.35 \times 10^4$ Pa.
 
-**Heat rejected** (during 4→1 isochoric cooling): $Q_C = nC_V(T_4 - T_1) = 0.0406 \cdot 20.79 \cdot (815-300) = 435$ J.
+Work done by the gas:
 
-**Net work** per cycle: $W = Q_H - Q_C = 1000 - 435 = 565$ J.
+$$W = \frac{P_i V_i - P_f V_f}{\gamma - 1} = \frac{(3.04 \times 10^5)(2 \times 10^{-3}) - (6.35 \times 10^4)(6 \times 10^{-3})}{0.4}$$
 
-**Efficiency:** $\eta = W/Q_H = 565/1000 = 56.5\%$.
+$$= \frac{608 - 381}{0.4} = \frac{227}{0.4} = 567 \text{ J}$$
 
-**Check against formula:** $\eta_{\text{Otto}} = 1 - 1/r^{\gamma-1} = 1 - 1/2.30 = 56.5\%$. ✓
+Since $Q = 0$, $\Delta U = -567$ J. The gas cooled. You can verify: $\Delta U = nC_V\Delta T$, and the temperature dropped from $T_i = P_i V_i/(nR)$ to a lower value.
 
-**The lesson.** The Otto cycle efficiency depends only on the compression ratio (and $\gamma$). Higher $r$ gives higher efficiency. Modern gasoline engines push $r$ to 10–12 (limited by autoignition — "knocking"); diesel engines push $r$ to 15–22 (no spark plugs, ignition by compression).
+Compare this to the same expansion done isothermally, at temperature $T_i = P_i V_i/(nR)$. Work done isothermally: $W = nRT_i \ln(V_f/V_i)$. We don't need $n$ separately — note that $nRT_i = P_i V_i = 608$ J, so:
 
-**The limit.** Real engines run far from the ideal Otto cycle: finite combustion time (not instantaneous), turbulent gas dynamics, friction losses, heat conduction to cylinder walls, exhaust flow restrictions. Real efficiencies: 25–30% for gasoline, 40–45% for diesel.
+$$W_{\text{iso}} = 608 \cdot \ln(3) = 608 \cdot 1.099 = 668 \text{ J}$$
+
+The isothermal process does *more* work than the adiabatic for the same volume change, starting from the same state. That's the area difference between the two curves on the PV diagram — the isotherm sits higher (warmer gas, maintained by heat input), so more area lies under it.
+
+<!-- → [DIAGRAM: Two curves on the same PV diagram, both starting from the same point (P_i, V_i) and ending at the same V_f — isothermal hyperbola above, adiabat below; both shaded areas under the curves to the V-axis; the isothermal shaded region visibly larger; difference region between the two curves highlighted; caption: "The gap between the curves is the gap in work: the isotherm gets heat from outside, so it stays warmer and pushes harder all the way to V_f."] -->
 
 ---
 
-## Common misconceptions
+## Cycles and the Engine
 
-**"Isothermal and adiabatic curves look the same."** Both are curves going down-right on the PV diagram, but adiabatic is always *steeper*. At the same point, $|dP/dV|_{\text{adiabatic}} = \gamma |dP/dV|_{\text{isothermal}}$, with $\gamma > 1$. The two curves diverge as $V$ increases.
+Now for the really useful idea.
 
-**"Work done = area under the curve, always."** Yes, for *quasi-static* processes. The formula $W = \int P\,dV$ assumes the gas is in equilibrium at each step. For non-equilibrium processes (free expansion into vacuum, rapid pressure changes), the integral isn't directly meaningful, but the first law still applies — you just have to compute $W$ from external constraints (e.g., $W = 0$ for free expansion).
+Suppose we run a gas through a sequence of processes that brings it back to its starting state. The gas returns to the same $P$, $V$, and $T$ it started with — meaning $\Delta U = 0$ for the whole cycle. From the first law:
 
-**"The area enclosed by any cycle is the heat added."** No — it's the *net work*. Heat added depends on the path: total $Q$ added over the cycle equals total $W$ done (since $\Delta U = 0$ for a complete cycle), and these are both equal to the enclosed area.
+$$\Delta U = Q_{\text{net}} - W_{\text{net}} = 0 \implies Q_{\text{net}} = W_{\text{net}}$$
 
-**"Otto cycle efficiency is what real engines achieve."** Real engines fall well short. The Otto formula sets the *upper bound* assuming everything is ideal; friction, finite-time combustion, and heat losses reduce real efficiency to ~half the ideal Otto value.
+All the net heat absorbed by the gas over the cycle equals the net work done by the gas. That work is the area enclosed by the closed curve on the PV diagram.
 
-**"Cycles must go clockwise."** Cycles can go either way. Clockwise = engine (does net positive work). Counterclockwise = refrigerator (work input is positive; heat is moved from cold to hot).
+The direction matters. A cycle traversed *clockwise* — expanding at high pressure, compressing at low pressure — does net positive work. It's a *heat engine*: it absorbs heat from a hot reservoir and converts some of it to work, dumping the rest as exhaust. A cycle traversed *counterclockwise* requires net work input. That's a *refrigerator*.
+
+The simplest engine worth analyzing is the **Otto cycle** — the idealized model of the four-stroke gasoline engine in your car.
+
+The Otto cycle has four steps:
+
+**1→2. Adiabatic compression.** The air-fuel mixture is compressed quickly. No heat exchanges (the stroke is too fast for significant heat transfer to cylinder walls). The gas goes from the large volume $V_1$ to the small volume $V_2 = V_1/r$, where $r$ is the *compression ratio* — typically 8 to 12 in modern gasoline engines. On the PV diagram: steep curve upward to the left.
+
+**2→3. Isochoric heat addition.** The spark plug fires. Combustion adds heat $Q_H$ to the gas at essentially constant volume (the explosion is fast compared to piston motion). Pressure jumps. Vertical line upward.
+
+**3→4. Adiabatic expansion.** The hot, high-pressure gas drives the piston down. Another steep adiabatic curve, now to the lower right. This is the power stroke.
+
+**4→1. Isochoric heat rejection.** The exhaust valve opens; hot exhaust gas is replaced by cool fresh mixture. Modeled as cooling at constant volume. Pressure drops. Vertical line downward.
+
+The cycle is now closed. The enclosed area is the net work per cycle.
+
+<!-- → [DIAGRAM: Full Otto cycle on a PV diagram — four labeled states (1, 2, 3, 4); two steep adiabatic curves (1→2 compression, 3→4 expansion) in one color; two vertical isochoric lines (2→3 heat addition, 4→1 heat rejection) in another color; enclosed area shaded and labeled "net work per cycle W"; arrows showing direction of traversal (clockwise); V_1 and V_2 marked on V-axis with compression ratio r = V_1/V_2 annotated; this should be the primary reference figure for the Otto cycle derivation that follows] -->
+
+To find the efficiency — the fraction of $Q_H$ that comes out as work — we apply the first law to each leg.
+
+The isochoric legs (2→3 and 4→1) are the only ones involving heat. For an ideal gas with $n$ moles:
+
+$$Q_H = nC_V(T_3 - T_2) \qquad Q_C = nC_V(T_4 - T_1)$$
+
+Net work: $W = Q_H - Q_C$. Efficiency:
+
+$$\eta = \frac{W}{Q_H} = 1 - \frac{Q_C}{Q_H} = 1 - \frac{T_4 - T_1}{T_3 - T_2}$$
+
+Now I use the adiabatic constraint on the two adiabatic legs. For 1→2: $T_1 V_1^{\gamma-1} = T_2 V_2^{\gamma-1}$, giving $T_2 = T_1 r^{\gamma-1}$. For 3→4: $T_3 V_2^{\gamma-1} = T_4 V_1^{\gamma-1}$, giving $T_4 = T_3 / r^{\gamma-1}$.
+
+Notice: $T_2/T_1 = T_3/T_4 = r^{\gamma-1}$. This means $T_4 - T_1 = (T_3 - T_2)/r^{\gamma-1}$. Plugging in:
+
+$$\boxed{\eta_{\text{Otto}} = 1 - \frac{1}{r^{\gamma-1}}}$$
+
+That's a clean result. Efficiency depends only on the compression ratio $r$ and $\gamma$. For $r = 10$, $\gamma = 1.4$:
+
+$$\eta = 1 - 10^{-0.4} = 1 - 0.398 = 60.2\%$$
+
+Real gasoline engines achieve 25–35%. The gap comes from heat losses to the cylinder walls, finite combustion time, friction, pumping losses in the intake and exhaust strokes, and the fact that the working fluid isn't actually an ideal gas — combustion products have different $\gamma$ than fresh air. The Otto cycle is not a target; it's an upper bound on what the thermodynamics alone permits.
+
+<!-- → [CHART: Line chart of η_Otto = 1 − 1/r^(γ−1) vs. compression ratio r from 1 to 20, for γ = 1.4 (diatomic air); mark the typical gasoline range r = 9–12 with a shaded band; mark the diesel range r = 15–22 with a second band; add a horizontal dashed line at η = 1.0 labeled "impossible limit"; add a horizontal band at η = 0.25–0.35 labeled "real gasoline engines" and a band at η = 0.40–0.45 labeled "real diesel engines" — student should see immediately why diesel beats gasoline (higher r) and why real engines fall short of the theoretical curve] -->
+
+Diesel engines reach 40–45% efficiency. The reason is compression ratio: diesel engines compress to $r \approx 15$–22 (versus 9–12 for gasoline). You can't compress gasoline-air mixture that aggressively without pre-ignition — the mixture ignites spontaneously from the heat of compression ("knock"), which is destructive. Diesel fuel is much less volatile and doesn't pre-ignite. Higher $r$ means higher efficiency. The diesel also uses a *different cycle* (isobaric heat addition rather than isochoric), but the dominant factor is $r$.
+
+---
+
+## What the PV Diagram Tells You — and What It Doesn't
+
+The PV diagram is a tool for quasi-static processes. That word "quasi-static" means the process happens slowly enough that the gas is in equilibrium at every instant — effectively a sequence of equilibrium states connected in a smooth path. For quasi-static processes, the curves we've been drawing are exact representations of what happens.
+
+For non-quasi-static processes — a gas rushing through a broken membrane into vacuum, or an explosion — the formula $W = \int P\,dV$ isn't directly applicable, because the gas isn't in a well-defined pressure state during the process. (For free expansion into vacuum specifically, $W = 0$ regardless: there's no force on any piston, so no work is done, and the integral isn't meaningful.) The first law $\Delta U = Q - W$ still holds — it always holds — but you have to compute $W$ from external constraints rather than reading it off the diagram.
+
+There's something deeper the PV diagram doesn't tell you: *direction*. Given two states on the diagram, the PV diagram will show you both a path from A to B and a path from B to A, and it says nothing about which direction is *spontaneous*. A gas can expand isothermally and do work. Can it un-expand — spontaneously compress and generate cold? The first law doesn't forbid it; it just says energy must be conserved. But it doesn't happen. The reason it doesn't happen is the second law, which is where we're going next.
+
+The PV diagram encodes the *mechanics* of thermodynamics. What it leaves out is the *arrow of time* — the direction in which real processes proceed. That's Chapter 6.
+
+---
+
+## Common Misconceptions
+
+*"Adiabatic and isothermal curves look the same."* They do look qualitatively similar — both sweep down and to the right. The difference is steepness. At any point, the adiabat is steeper than the isotherm passing through that same point by a factor of $\gamma$. Draw them through the same starting point and they diverge immediately: the adiabat drops faster.
+
+*"The area enclosed by a cycle is the heat added."* No — it's the net *work*. The heat added and heat rejected are properties of specific legs; the area is the difference between them. It equals net heat only because $\Delta U = 0$ for a complete cycle.
+
+*"Otto cycle efficiency is what real engines achieve."* It's the *upper bound*. Real engines fall well short because the Otto cycle assumes ideal-gas behavior, perfectly instantaneous combustion, zero friction, and no heat transfer through the walls. Real efficiencies are roughly half the Otto value.
+
+*"A cycle must go clockwise."* A clockwise cycle is an engine. A counterclockwise cycle is a refrigerator. The same shape, traversed in opposite directions, has the same enclosed area but opposite sign of net work.
+
+---
+
+## What Would Change My Mind
+
+None of this is contested. The PV diagram follows from the ideal-gas law and the definition of work; the process formulas follow from applying the first law to each constrained case; the Otto efficiency formula is a straightforward derivation. Experiments on ideal-gas systems confirm all of it.
+
+What's genuinely open isn't the PV diagram — it's what happens *between* states during non-quasi-static processes. The diagram describes idealized paths. Real compressions and expansions happen fast, generate turbulence, and produce entropy that the PV diagram doesn't show. The PV diagram is a useful, accurate idealization. Knowing when the idealization breaks down is what separates a physicist from a textbook follower.
+
+---
+
+## Still Puzzling
+
+*Why $PV^\gamma = \text{const}$ for an adiabat?* It falls out of the math cleanly enough — first law applied to an adiabatic process, combined with the ideal-gas law — but the *physical* content is worth pausing on. The exponent $\gamma$ encodes how energy distributes among a molecule's degrees of freedom. A monatomic gas stores energy only in translational motion (3 degrees), giving $\gamma = 5/3$. A diatomic gas also stores energy in rotation (2 more degrees at moderate temperatures), giving $\gamma = 7/5$. A more "floppy" molecule with more degrees of freedom has lower $\gamma$, meaning less steep adiabats, meaning the molecule's internal complexity lets it absorb more of the compression energy internally rather than returning it to pressure. The structure of the molecule is literally written into the shape of the adiabat.
+
+*What happens at the corners of a cycle?* The Otto cycle has sharp corners on the PV diagram — for instance, the instantaneous transition from adiabatic expansion to isochoric cooling. Real engines don't make instantaneous transitions; every corner is rounded by finite-time effects. The idealized cycle is a useful approximation, but the corners are where the approximation is least accurate.
 
 ---
 
 ## Exercises
 
-**Warm-up (Apply).** A gas at $P = 2$ atm, $V = 5$ L expands isobarically to $V = 8$ L. Find $W$ in joules.
+**Warm-up 1** *(Apply — isobaric work)*. A gas at $P = 2.5$ atm expands isobarically from $V_i = 3$ L to $V_f = 7$ L. Compute the work done by the gas in joules. What is $\Delta U$ if no heat is added? What does that tell you?
 
-**Apply.** 1 mol of monatomic ideal gas at $V_1 = 10$ L, $T_1 = 300$ K expands isothermally to $V_2 = 30$ L. Find $W$, $Q$, $\Delta U$, $\Delta T$.
+**Warm-up 2** *(Apply — isothermal work)*. One mole of ideal gas at $T = 350$ K expands isothermally to twice its initial volume. Find $W$, $Q$, and $\Delta U$. Verify that your result is consistent with the first law.
 
-**Apply.** Same gas at the same initial conditions undergoes *adiabatic* expansion to $V_2 = 30$ L. Find $T_2$, $W$, $Q$, $\Delta U$. Compare to the isothermal case.
+**Warm-up 3** *(Apply — adiabatic process)*. A monatomic ideal gas ($\gamma = 5/3$) at $P_i = 4$ atm, $V_i = 1$ L is compressed adiabatically to $V_f = 0.25$ L. Find $P_f$, $T_f/T_i$, and the work done *on* the gas.
 
-**Apply.** Otto cycle: $r = 9$, $\gamma = 1.4$, $T_1 = 350$ K, $V_1 = 0.5$ L. Heat added per cycle $Q_H = 800$ J. Find $T_2$, $T_3$, $T_4$, $\eta_{\text{Otto}}$, $W_{\text{net}}$.
+**Application 1** *(Apply — identifying steepness)*. At a given point on the PV diagram, a gas has $P = 3 \times 10^5$ Pa and $V = 2 \times 10^{-3}$ m³, with $\gamma = 1.4$. Compute the slope of the isothermal curve passing through this point and the slope of the adiabatic curve. By what factor do they differ, and why?
 
-**Apply + Analyze.** A cyclic process on the PV diagram traces a rectangle with corners at $(V_1, P_1) = (10$ L, 1 atm), $(V_2, P_1) = (30$ L, 1 atm), $(V_2, P_2) = (30$ L, 3 atm), $(V_1, P_2) = (10$ L, 3 atm). Compute net work, going clockwise.
+**Application 2** *(Apply — rectangular cycle)*. A cycle traces a rectangle on the PV diagram: corners at $(V_1, P_1) = (1\ \text{L},\ 1\ \text{atm})$, $(V_2, P_1) = (4\ \text{L},\ 1\ \text{atm})$, $(V_2, P_2) = (4\ \text{L},\ 3\ \text{atm})$, $(V_1, P_2) = (1\ \text{L},\ 3\ \text{atm})$. Traversed clockwise: find $W_{\text{net}}$. Then traverse it counterclockwise and interpret the sign of $W_{\text{net}}$.
 
-**Challenge.** A diesel cycle: 1 mol gas, adiabatic compression $r_c = 18$, isobaric heat addition until $V_3 = 2 V_2$, then adiabatic expansion back to $V_1$, then isochoric cooling. Find the cycle's efficiency. (Diesel efficiencies for $r_c = 18$: ~62%.)
+**Application 3** *(Apply — Otto cycle states)*. An Otto cycle: $\gamma = 1.4$, $r = 8$, $T_1 = 300$ K, $Q_H = 1200$ J per cycle, $n = 0.05$ mol. Find $T_2$, $T_3$, $T_4$, $\eta_{\text{Otto}}$, and $W_{\text{net}}$.
+
+**Synthesis 1** *(Analyze — comparing cycles)*. Two cycles start from the same state $(P_1, V_1)$ and both end at $(P_1, 3V_1)$. Cycle A: isothermal expansion, then isochoric cooling back to $P_1$, then isobaric compression back to $V_1$. Cycle B: adiabatic expansion to the same final $V$, then isochoric heating to $P_1$, then isobaric compression back. Which cycle encloses more area? Which does more net work? What does this tell you about the relative efficiency of using isothermal vs. adiabatic expansion in a cycle?
+
+**Synthesis 2** *(Analyze — the direction question)*. A gas undergoes a complete clockwise cycle and does net work $W > 0$. The first law for the cycle gives $Q_{\text{net}} = W$. Where did this energy come from? Trace the flow: which leg(s) absorbed heat, which rejected it, and how does the enclosed area connect to the net heat exchange? Now reverse the cycle (counterclockwise). Redo the energy accounting.
+
+**Challenge** *(Analyze + Apply — the diesel cycle)*. The diesel cycle replaces the Otto cycle's isochoric heat addition with *isobaric* heat addition (the fuel burns more slowly, at roughly constant pressure). The four legs are: adiabatic compression ($V_1 \to V_2$), isobaric heat addition ($V_2 \to V_3$), adiabatic expansion ($V_3 \to V_1$), isochoric heat rejection ($V_1$, pressure drops). Define the cutoff ratio $r_c = V_3/V_2$. Derive the diesel cycle efficiency:
+
+$$\eta_{\text{Diesel}} = 1 - \frac{1}{r^{\gamma-1}} \cdot \frac{r_c^\gamma - 1}{\gamma(r_c - 1)}$$
+
+For $r = 18$, $r_c = 2$, $\gamma = 1.4$: compute $\eta_{\text{Diesel}}$ and compare to $\eta_{\text{Otto}}$ at the same $r$. The diesel is lower efficiency at the same compression ratio. Why, then, do diesel engines beat gasoline engines in practice?
 
 ---
 
@@ -177,7 +214,7 @@ $P_4 = nRT_4/V_4 = 0.0406 \cdot 8.314 \cdot 815 / 10^{-3} \approx 2.75 \times 10
 
 ### Build the PV diagram simulator (`05-pv-diagram.html`)
 
-> **Show.** Four processes: isothermal $PV = $ const, isochoric $V$ = const, isobaric $P$ = const, adiabatic $PV^\gamma$ = const. Work = area under curve.
+> **Show.** Four processes: isothermal $PV = \text{const}$, isochoric $V = \text{const}$, isobaric $P = \text{const}$, adiabatic $PV^\gamma = \text{const}$. Work = area under curve.
 >
 > **Say.** Build an interactive PV-diagram simulator with all four process types and cycle chains.
 >
@@ -205,19 +242,4 @@ Save as `05b-carnot-preview.html`. Bridge to Chapter 6.
 
 ---
 
-## What would change my mind
-
-The PV diagram is a geometric tool — its validity is just the ideal-gas law applied to quasi-static processes. The work formula $W = \int P \, dV$ is an exact identity for any quasi-static process. The process formulas (isothermal, adiabatic, etc.) for an ideal gas have been confirmed in countless experiments. None of this is contested.
-
-What's missing is the *direction* of allowed processes. The PV diagram tells you what's possible algebraically; it doesn't tell you which direction is spontaneous. That's the second law's job (Chapter 6).
-
-## Still puzzling
-
-- *Why $PV^\gamma$ for adiabatic?* Derived from the first law applied to an adiabatic process: $dU = -P dV$ with $dU = nC_V dT$ and $PV = nRT$. The math is standard; the *physics* is that no heat enters, so internal energy changes only by the work done.
-- *What's a "quasi-static" process really?* A process slow enough that the gas is in equilibrium at every instant — effectively a sequence of equilibrium states. Real processes aren't quasi-static; they have finite-time effects. The PV diagram only handles the quasi-static idealization.
-- *What happens at the corners of a cycle?* Where two processes meet (e.g., adiabatic → isochoric in the Otto cycle), there's an instantaneous change in the slope of the path. Real engines can't make instantaneous transitions; there's a smoothing at every corner. The idealized PV diagram is a useful approximation.
-
----
-
 **Tags:** PV diagram, isothermal, isochoric, isobaric, adiabatic, thermodynamic cycle, Otto cycle, compression ratio, heat engine, work as area
-
